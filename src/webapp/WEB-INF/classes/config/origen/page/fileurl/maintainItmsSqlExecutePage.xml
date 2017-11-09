@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pages>
+    <maintainPage id="maintainItmsSqlExecutePage" title="maintainItmsSqlExecutePage" autoQuery="true" entityClass="com.vtradex.wms.server.model.itms.ItmsSqlExecute">
+        <workflow/>
+        <datasource><![CDATA[SELECT sqlfile.id,
+sqlfile.type,
+sqlfile.dir.dirName,
+sqlfile.filename,
+sqlfile.repeatTimes,
+sqlfile.isDoScheduler,
+sqlfile.schedulerTime,
+'sql_file' as down,
+sqlfile.lastTime,
+sqlfile.description,
+sqlfile.status,
+sqlfile.updateInfo.createdTime,
+sqlfile.updateInfo.creator,
+sqlfile.updateInfo.updateTime,
+sqlfile.updateInfo.lastOperator
+ FROM ItmsSqlExecute sqlfile 
+ WHERE 1=1
+ AND sqlfile.dir.warehouse = #{SESSION_WAREHOUSE}
+ ORDER BY sqlfile.dir.dirName,sqlfile.id]]></datasource>
+        <columns>
+            <column id="sqlfile.id" title="sqlfile.id" visible="false" sortable="false" horizonAlign="center" verticalAlign="middle" dataType="long"/>
+            <column id="sqlfile.type" title="TYPE" visible="false" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="string"/>
+            <column id="sqlfile.dir.dirName" title="dir.dirName" visible="true" sortable="true" horizonAlign="left" verticalAlign="middle" dataType="string"/>
+            <column id="sqlfile.filename" title="sqlfile.filename" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="string" width="200" format="alterValueFormatter"/>
+            <column id="sqlfile.repeatTimes" title="sqlfile.repeatTimes" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="integer"/>
+            <column id="sqlfile.isDoScheduler" title="sqlfile.isDoScheduler" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" width="60" dataType="boolean" format="booleanFormat"/>
+            <column id="sqlfile.schedulerTime" title="sqlfile.schedulerTime" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" width="80" dataType="enum" format="enumFormat" formatParam="ScheduleTime"/>
+            <column id="down" title="mis.extendPropc1" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="string" width="60" format="downloadFormartter"/>
+            <column id="sqlfile.lastTime" title="sqlfile.lastTime" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="date"/>
+            <column id="sqlfile.description" title="warehouse.description" visible="true" sortable="true" horizonAlign="left" verticalAlign="middle" dataType="string" width="200"/>
+            <column id="sqlfile.status" title="warehouse.status" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" width="40" dataType="enum" format="enumFormat" formatParam="ItmsBaseStatus"/>
+            <column id="sqlfile.updateInfo.createdTime" title="moveDoc.updateInfo.createdTime" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="date"/>
+			<column id="sqlfile.updateInfo.creator" title="moveDoc.updateInfo.creator" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="string"/>
+            <column id="sqlfile.updateInfo.updateTime" title="workDoc.updateTime" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="date"/>
+			<column id="sqlfile.updateInfo.lastOperator" title="moveDoc.updateInfo.lastOperator" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="string"/>
+		</columns>
+    </maintainPage>
+</pages>

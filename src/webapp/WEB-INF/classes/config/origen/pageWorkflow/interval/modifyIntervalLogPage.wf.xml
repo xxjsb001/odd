@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<page id="modifyIntervalLogPage">
+    <main>
+        <process id="wmsInventoryExtendProcess">
+            <formCommit id="new" title="new" process="wmsInventoryExtendProcess.new" enableType="none" accelerateKey="enter" multiMapping="false" download="false" closeTransactional="false" visibleType="new">
+                <enableExpression/>
+                <mappings/>
+                <actions>
+                    <action managerName="intervalManager" methodName="storeInterval" parameter="obj"/>
+                </actions>
+                <forwards/>
+            </formCommit>
+            <formCommit id="save" title="save" process="wmsInventoryExtendProcess.edit" enableType="none" accelerateKey="enter" download="false" closeTransactional="false" visibleType="edit">
+                <enableExpression/>
+                <mappings/>
+                <actions>
+                    <action managerName="intervalManager" methodName="storeInterval" parameter="obj"/>
+                </actions>
+                <forwards/>
+            </formCommit>
+        </process>
+    </main>
+    <detail>
+        <process id="wmsInventoryExtendProcess">
+            <tableCommit id="confirmBySerialNo" title="confirmBySerialNo" process="wmsInventoryExtendProcess.confirmBySerialNo" enableType="single" download="false" closeTransactional="false">
+                <enableExpression><![CDATA[(${iTimes.line}!=0 && ${iLog.status}=='OPEN')]]></enableExpression>
+                <mappings/>
+                <actions>
+                    <action managerName="intervalManager" methodName="confirmBySerialNo" parameter="obj"/>
+                </actions>
+                <forwards/>
+            </tableCommit>
+        </process>
+    </detail>
+</page>

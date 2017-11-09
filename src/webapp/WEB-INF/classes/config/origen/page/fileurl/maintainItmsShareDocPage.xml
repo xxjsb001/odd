@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pages>
+    <maintainPage id="maintainItmsShareDocPage" title="maintainItmsShareDocPage" autoQuery="false" entityClass="com.vtradex.wms.server.model.inventory.ItmsFiles" displayRowCount="50">
+        <workflow/>
+        <datasource><![CDATA[SELECT mis.id,
+mis.supCode,
+mis.note,
+'doc_file' as down,
+mis.updateInfo.createdTime,
+mis.updateInfo.creator
+ FROM ItmsFiles mis 
+ WHERE 1=1
+ AND mis.warehouse = #{SESSION_WAREHOUSE} 
+ AND mis.isPublicShare = true
+ AND (mis.updateInfo.creator > #{SESSION_USER_NAME} OR mis.updateInfo.creator < #{SESSION_USER_NAME})
+ ORDER BY mis.id desc]]></datasource>
+        <columns>
+            <column id="mis.id" title="mis.id" visible="false" sortable="false" horizonAlign="center" verticalAlign="middle" dataType="long"/>
+            <column id="mis.supCode" title="mis.supCode" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="string" width="260" format="alterValueFormatter"/>/>
+            <column id="mis.note" title="mis.note" visible="true" sortable="true" horizonAlign="left" verticalAlign="middle" dataType="string" width="260"/>
+            <column id="down" title="mis.extendPropc1" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="string" width="60" format="downloadFormartter"/>
+            <column id="mis.updateInfo.createdTime" title="moveDoc.updateInfo.createdTime" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="date"/>
+			<column id="mis.updateInfo.creator" title="moveDoc.updateInfo.creator" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="string"/>
+		</columns>
+    </maintainPage>
+</pages>

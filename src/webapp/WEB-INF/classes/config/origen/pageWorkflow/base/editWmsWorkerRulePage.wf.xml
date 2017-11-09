@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<page id="editWmsWorkerRulePage">
+    <main>
+        <process id="qualityBillStatus">
+            <formCommit id="new" title="new" process="qualityBillStatus.new" enableType="none" multiMapping="false" closeTransactional="false" visibleType="none">
+                <enableExpression/>
+                <mappings>
+                	<mapping id="worker.id" className="long">
+                        <entries/>
+                    </mapping>
+                </mappings>
+                <actions>
+                    <action managerName="itmsOrganizationManager" methodName="addWmsWorkerRule" parameter="worker.id,obj"/>
+                </actions>
+                <forwards>
+                	<forward name="refreshParent" newEnabled="true" editEnabled="true"/>
+                    <forward name="closeWindow" newEnabled="true" editEnabled="true"/>
+                </forwards>
+            </formCommit>
+        </process>
+    </main>
+    <detail/>
+</page>

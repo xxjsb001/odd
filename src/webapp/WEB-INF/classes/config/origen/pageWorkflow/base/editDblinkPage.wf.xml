@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<page id="editDblinkPage">
+    <main>
+        <process id="dblinkProcess">
+            <formCommit id="save" title="save" process="dblinkProcess.new" enableType="none" multiMapping="false" download="false" closeTransactional="false" visibleType="new">
+                <enableExpression/>
+                <mappings>
+                    <mapping id="dblink.is.private" className="string">
+                        <entries/>
+                    </mapping>
+                    <mapping id="dblink.owner.id" className="long">
+                        <entries/>
+                    </mapping>
+                </mappings>
+                <actions>
+                    <action managerName="itmsLocationManager" methodName="newDbLink" parameter="obj,dblink.is.private,dblink.owner.id"/>
+                </actions>
+                <forwards>
+                    <forward name="refreshParent" newEnabled="true" editEnabled="true"/>
+                    <forward name="resetWindow" newEnabled="true" editEnabled="true"/>
+                </forwards>
+            </formCommit>
+        </process>
+    </main>
+    <detail/>
+</page>

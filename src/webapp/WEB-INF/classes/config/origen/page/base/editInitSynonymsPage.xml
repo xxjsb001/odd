@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pages>
+    <editPage id="editInitSynonymsPage" title="editInitSynonymsPage" entityClass="com.vtradex.wms.server.model.itms.ItmsSynonyms" width="400" height="230" onClose="refreshParent">
+        <workflow/>
+        <initListeners/>
+        <inputUIs>
+            <hidden id="syno.id" title="syno.id" reserve="false"/>
+            <list id="dblink.sid.id" title="location.warehouseArea.id" row="1" col="1" span="1" width="118" readOnly="false" required="true" reserve="false" forceOverride="true" forceSpace="false" multiple="false" inVisible="false">
+                <visibleExpression/>
+                <hql><![CDATA[SELECT sid.id,
+sid.name
+FROM ItmsSid sid WHERE sid.status='ENABLED' 
+AND sid.warehouse = #{SESSION_WAREHOUSE}]]></hql>
+                <eventListeners/>
+            </list>
+        </inputUIs>
+    </editPage>
+</pages>

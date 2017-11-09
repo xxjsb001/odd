@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<process id="qualityBillStatus" control="null">
+
+	<task id="new" title="新建">
+	</task>
+
+	<task id="edit" title="修改">
+	</task>
+
+	<task id="delete" title="删除">
+		<to id="NONE" type="none"/>
+	</task>
+
+	<task id="initSynonyms" title="更新授权表信息">
+	</task>
+
+</process>

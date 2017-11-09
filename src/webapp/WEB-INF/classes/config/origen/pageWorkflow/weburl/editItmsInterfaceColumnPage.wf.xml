@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<page id="editItmsInterfaceColumnPage">
+    <main>
+        <process id="normalProcess">
+            <formCommit id="save" title="save" process="normalProcess.new" enableType="none" download="false" visibleType="new">
+                <enableExpression/>
+                <mappings>
+                    <mapping id="iTable.id" className="long">
+                        <entries/>
+                    </mapping>
+                </mappings>
+                <actions>
+                    <action managerName="webExecuteData" methodName="storeItmsInterfaceTable" parameter="obj,iTable.id"/>
+                </actions>
+                <forwards>
+                    <forward name="refreshParent" newEnabled="true" editEnabled="true"/>
+                    <forward name="resetWindow" newEnabled="true" editEnabled="true"/>
+                </forwards>
+            </formCommit>
+            <formCommit id="edit" title="edit" process="normalProcess.edit" enableType="none" download="false" visibleType="edit">
+                <enableExpression/>
+                <mappings/>
+                <actions/>
+                <forwards>
+                    <forward name="closeWindow" newEnabled="true" editEnabled="true"/>
+                </forwards>
+            </formCommit>
+        </process>
+    </main>
+    <detail/>
+</page>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pages>
+    <maintainPage id="maintainItmsFilesPage" title="maintainItmsFilesPage" autoQuery="false" entityClass="com.vtradex.wms.server.model.inventory.ItmsFiles">
+        <workflow/>
+        <datasource><![CDATA[SELECT mis.id,
+mis.type,
+mis.supCode,
+mis.note,
+mis.supName,
+'doc_file' as down,
+mis.quantity,
+mis.updateInfo.createdTime,
+mis.updateInfo.creator,
+mis.updateInfo.updateTime,
+mis.updateInfo.lastOperator
+ FROM ItmsFiles mis 
+ WHERE 1=1
+ AND mis.warehouse = #{SESSION_WAREHOUSE} 
+ ORDER BY mis.orderDate,mis.supCode,mis.id]]></datasource>
+        <columns>
+            <column id="mis.id" title="mis.id" visible="false" sortable="false" horizonAlign="center" verticalAlign="middle" dataType="long"/>
+            <column id="mis.type" title="mis.type" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="enum" format="enumFormat" formatParam="ItmsFileType"/>
+            <column id="mis.supCode" title="mis.supCode" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="string" width="120" format="alterValueFormatter"/>/>
+            <column id="mis.note" title="mis.note" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="string"/>
+            <column id="mis.supName" title="mis.supName" visible="false" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="string"/>
+            <column id="down" title="mis.extendPropc1" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="string" format="downloadFormartter"/>
+            <column id="mis.quantity" title="mis.quantity" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="double"/>
+            <column id="mis.updateInfo.createdTime" title="moveDoc.updateInfo.createdTime" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="date"/>
+			<column id="mis.updateInfo.creator" title="moveDoc.updateInfo.creator" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="string"/>
+            <column id="mis.updateInfo.updateTime" title="workDoc.updateTime" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="date"/>
+			<column id="mis.updateInfo.lastOperator" title="moveDoc.updateInfo.lastOperator" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="string"/>
+		</columns>
+    </maintainPage>
+</pages>

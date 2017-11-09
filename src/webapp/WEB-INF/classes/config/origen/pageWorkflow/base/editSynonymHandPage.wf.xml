@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<page id="editSynonymHandPage">
+    <main>
+        <process id="wmsWorkAreaProcess">
+            <formCommit id="synonymHand" title="synonymHand" process="wmsWorkAreaProcess.synonymHand" enableType="none" multiMapping="false" download="false" closeTransactional="false" visibleType="edit">
+                <enableExpression/>
+                <mappings>
+                </mappings>
+                <actions>
+                    <action managerName="itmsLocationManager" methodName="synonymHand" parameter="obj"/>
+                </actions>
+                <forwards>
+                    <forward name="closeWindow" newEnabled="true" editEnabled="true"/>
+                </forwards>
+            </formCommit>
+        </process>
+    </main>
+    <detail/>
+</page>

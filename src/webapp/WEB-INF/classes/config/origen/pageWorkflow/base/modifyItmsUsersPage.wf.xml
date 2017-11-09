@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<page id="modifyItmsUsersPage">
+	<main>
+        <process id="normalEditProcess">
+            <formCommit id="save" title="save" process="normalEditProcess.new" enableType="none" download="false" visibleType="new">
+                <enableExpression/>
+                <mappings/>
+                <actions/>
+                <forwards>
+                    <forward name="refreshParent" newEnabled="true" editEnabled="true"/>
+                    <forward name="resetWindow" newEnabled="true" editEnabled="true"/>
+                </forwards>
+            </formCommit>
+            <formCommit id="edit" title="edit" process="normalEditProcess.edit" enableType="none" download="false" visibleType="edit">
+                <enableExpression/>
+                <mappings/>
+                <actions>
+	                <action managerName="itmsOrganizationManager" methodName="saveUsers" parameter="obj"/>
+	            </actions>
+                <forwards>
+                    <forward name="closeWindow" newEnabled="true" editEnabled="true"/>
+                </forwards>
+            </formCommit>
+        </process>
+    </main>
+    <detail>
+    	<process id="itmsUserProcess">
+	        <tablePopup id="insertPower" title="insertPower" process="itmsUserProcess.insertPower" enableType="none" containId="false" pageId="maintainWmsWorkerRuleInsertPage">
+	            <enableExpression><![CDATA[${worker.id} != '']]></enableExpression>
+	        </tablePopup>
+	        <tablePopup id="deletePower" title="deletePower" process="itmsUserProcess.deletePower" enableType="none" containId="false" pageId="maintainWmsWorkerRuleDeletePage">
+	            <enableExpression><![CDATA[${worker.id} != '']]></enableExpression>
+	        </tablePopup>
+	        <tablePopup id="updatePower" title="updatePower" process="itmsUserProcess.updatePower" enableType="none" containId="false" pageId="maintainWmsWorkerRuleUpdatePage">
+	            <enableExpression><![CDATA[${worker.id} != '']]></enableExpression>
+	        </tablePopup>
+	        <tablePopup id="selectPower" title="selectPower" process="itmsUserProcess.selectPower" enableType="none" containId="false" pageId="maintainWmsWorkerRulePage">
+	            <enableExpression><![CDATA[${worker.id} != '']]></enableExpression>
+	        </tablePopup>
+	        <tableCommit id="removeUser" title="removeUser" process="itmsUserProcess.removeUser" enableType="multi" multiMapping="false" download="false" closeTransactional="false">
+	            <enableExpression/>
+	            <mappings/>
+	            <actions>
+	                <action managerName="itmsOrganizationManager" methodName="removeWmsWorkerRule" parameter="obj"/>
+	            </actions>
+	            <forwards/>
+	        </tableCommit>
+	    </process>
+    </detail>
+</page>

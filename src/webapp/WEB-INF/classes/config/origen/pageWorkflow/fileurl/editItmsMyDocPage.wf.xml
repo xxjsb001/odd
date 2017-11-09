@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<page id="editItmsMyDocPage">
+    <main>
+        <process id="baseProcess">
+            <formCommit id="edit" title="edit" process="baseProcess.edit" enableType="none" download="false" visibleType="edit">
+                <enableExpression/>
+                <mappings/>
+                <actions>
+                    <action managerName="itmsFilesManager" methodName="editFile" parameter="obj"/>
+                </actions>
+                <forwards>
+                    <forward name="closeWindow" newEnabled="true" editEnabled="true"/>
+                </forwards>
+            </formCommit>
+        </process>
+    </main>
+    <detail/>
+</page>

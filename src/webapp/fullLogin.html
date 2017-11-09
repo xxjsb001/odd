@@ -1,0 +1,146 @@
+<!-- itmsPhoneLogin.html -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ODD-HUB</title>
+<style type="text/css">
+	html, body {
+		height: 100%;
+		overflow: auto;
+	}
+
+	body {
+		padding: 0;
+		margin: 0;
+	}
+</style>
+<link rel="stylesheet" href="css/form_itms.css">
+<script type="text/JavaScript">
+
+function waitLoginFinish() {
+	if (waitLogin == "true") {
+		return;
+	}
+	else {
+		waitLogin = "true";
+		doLogin();
+	}
+}
+function callGwt() {
+	if (parent.gwtState==false)
+	{
+		setTimeout("callGwt()", 500);
+	}
+	else {
+		parent.conn.foo();
+	}
+}
+function doLogin() {
+	var login_name = document.getElementById("login_name");
+	var password = document.getElementById("password");
+	var localeValue = "zh";
+	var url = "*.login";
+	var params = "login_name=" + encodeParams(login_name.value) + "&password=" + encodeParams(password.value) + "&locale=" 
+		+ localeValue + "&referenceModel=origen";
+	var xmlHttp = new XMLHttpRequest();
+	xmlHttp.open("POST",url,true);
+	xmlHttp.setRequestHeader("cache-control","no-cache"); 
+	xmlHttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+	xmlHttp.onreadystatechange=function() {
+		if (xmlHttp.readyState==4 && xmlHttp.status==200) {
+			if (xmlHttp.responseText=="success") {
+				callGwt();
+			}
+			else {
+				finishLogin(xmlHttp.responseText);
+			}
+		}
+	}
+	xmlHttp.send(params);
+}
+function finishLogin(errorMsg) {
+	waitLogin = "false";
+	//document.getElementById("slider").style.display = "none";
+	alert(errorMsg);
+}
+
+function encodeParams(txt){    
+	var randint=Math.ceil(Math.random()*100+1);
+		var result = randint;
+		var i,s;
+	    for(i=0;i<txt.length;i++) {
+	        result += "@"+(parseInt(txt.charCodeAt(i).toString(10)) * randint).toString(16); 
+	    }
+	    return result;
+	}
+
+function init() {
+	waitLogin = "false";
+	
+	if (window.ActiveXObject && !window.XMLHttpRequest) {
+		window.XMLHttpRequest = function() {
+			var msxmls = ['Msxml2.XMLHTTP.5.0','Msxml2.XMLHTTP.4.0','Msxml2.XMLHTTP.3.0','Msxml2.XMLHTTP','Microsoft.XMLHTTP'];
+			for (var i = 0 ; i < msxmls.length ; i ++) {
+				try {
+					return new ActiveXObject(msxmls[i]);
+				}
+				catch(e) {}
+			}
+			return null;
+		};
+	}
+}
+function checkEnterKey(evt) {
+	evt = evt ? evt : (window.event ? window.event : null);
+	if(evt.keyCode==13) {
+		checkLoginInput();
+	}
+}
+function checkLoginInput() {	
+	var login_name = document.getElementById('login_name');
+	if(login_name.value == '') {
+		alert('请输入用户名');
+		login_name.focus();
+		return;
+	}
+	var password = document.getElementById('password');
+	if(password.value == '') {
+		alert('请输入密码');
+		password.focus();
+		return;
+	}
+	waitLoginFinish();	  
+	//document.getElementById("slider").style.display = "block";
+}
+</script>
+</head>
+<body onload="init()" onkeyup="checkEnterKey(event)">
+
+<table style="height:100%; width:100%;" border="0">
+<tr>
+<td valign="middle">
+
+	<form action="" method="post" class="itms-matter">
+		<h1>ODD LOGING
+		<span>Please fill all the texts in the fields.</span>
+		</h1>
+		<label>
+		<span>Your Name :</span>
+		<input id="login_name" type="text" name="name" placeholder="Your Full Name" />
+		</label>
+		<label>
+		<span>Your Pass :</span>
+		<input id="password" type="password" name="password" />
+		</label>
+		<label>
+		<span>&nbsp;</span>
+		<input type="button" class="button" value="Loging" onClick="checkLoginInput()" onFocus="this.blur()"/>
+		</label>
+	</form>
+	
+</td>
+</tr>
+</table>
+
+</body>
+</html>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pages>
+    <maintainPage id="maintainItmsWebArgumentPage" title="maintainItmsWebArgumentPage" autoQuery="true" entityClass="com.vtradex.wms.server.model.webservice.ItmsWebArgument">
+        <workflow/>
+        <datasource><![CDATA[SELECT methods.id,
+url.company,
+url.url,
+methods.method,
+methods.jsonKey,
+methods.extTableName,
+methods.dataSource,
+methods.repeatTimes,
+methods.lastTime,
+methods.status,
+methods.description,
+methods.updateInfo.createdTime,
+methods.updateInfo.creator,
+methods.updateInfo.updateTime,
+methods.updateInfo.lastOperator 
+ FROM ItmsWebArgument methods 
+ left join methods.url url
+ WHERE 1=1
+ ORDER BY methods.id]]></datasource>
+        <columns>
+            <column id="methods.id" title="methods.id" visible="false" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="long"/>
+            <column id="url.company" title="url.company" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="string"/>
+            <column id="url.url" title="URL" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="integer"/>
+            <column id="methods.method" title="methods.method" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="string"/>
+            <column id="methods.jsonKey" title="methods.jsonKey" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="string"/>
+            <column id="methods.extTableName" title="methods.extTableName" visible="true" sortable="true" horizonAlign="left" verticalAlign="middle" dataType="string"/>
+            <column id="methods.dataSource" title="dir.dataSource" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="enum" format="enumFormat" formatParam="ItmsSqlTaskType"/>
+<!--             <column id="methods.isJob" title="methods.isJob" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="boolean" format="booleanFormat"/> -->
+            <column id="methods.repeatTimes" title="sqlfile.repeatTimes" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="integer"/>
+            <column id="methods.lastTime" title="sqlfile.lastTime" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="date"/>
+            <column id="methods.status" title="warehouse.status" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="enum" format="enumFormat" formatParam="BaseStatus"/>
+            <column id="methods.description" title="warehouse.description" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="string"/>
+        	<column id="methods.updateInfo.createdTime" title="moveDoc.updateInfo.createdTime" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="date"/>
+			<column id="methods.updateInfo.creator" title="moveDoc.updateInfo.creator" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="string"/>
+            <column id="methods.updateInfo.updateTime" title="workDoc.updateTime" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="date"/>
+			<column id="methods.updateInfo.lastOperator" title="moveDoc.updateInfo.lastOperator" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="string"/>
+        </columns>
+    </maintainPage>
+</pages>

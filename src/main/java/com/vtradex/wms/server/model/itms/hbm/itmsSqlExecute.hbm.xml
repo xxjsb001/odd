@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.vtradex.wms.server.model.itms.ItmsSqlExecute" table="ITMS_SQL_EXECUTE">
+        <id name="id" column="ID" type="long">
+            <generator class="native">
+                <param name="sequence">iseq_ItmsSqlExecute</param>
+                <param name="parameters">START WITH 1</param>
+            </generator>
+        </id>
+        
+        <many-to-one name="dir" class="com.vtradex.wms.server.model.itms.ItmsSqlDir">
+			<column name="DIR_ID" not-null="true"/>
+		</many-to-one>
+        <property name="filename" column="FILE_NAME" type="string" length="255" not-null="true" unique-key="UK_ITMS_SQL_EXECUTE"/>
+        <property name="repeatTimes" column="REPEAT_TIMES" type="integer" not-null="true"/>
+        <property name="lastTime" column="LAST_TIME" type="timestamp"/>
+        <property name="description" type="string">
+            <column name="DESCRIPTION" length="255"/>
+        </property>
+        <property name="status" type="string">
+            <column name="STATUS" length="50"/>
+        </property>
+        <property name="type" type="string">
+            <column name="TYPE" length="20"/>
+        </property>
+        <property name="isDoScheduler" column="IS_DOSCHEDULER" type="boolean" />
+        <property name="schedulerTime" type="string" length="10" column="SCHEDULER_TIME"/>
+        <component name="updateInfo" class="com.vtradex.thorn.server.model.UpdateInfo">
+			<property name="creatorId" type="long" column="CREATOR_ID"/>
+			<property name="creator" type="string" length="50" column="CREATOR"/>
+			<property name="createdTime" type="timestamp" column="CREATED_TIME"/>
+			<property name="lastOperatorId" type="long" column="LAST_OPERATOR_ID"/>
+			<property name="lastOperator" type="string" length="50" column="LAST_OPERATOR"/>
+			<property name="updateTime" type="timestamp" column="UPDATE_TIME"/>
+		</component>
+		
+	</class>
+</hibernate-mapping>

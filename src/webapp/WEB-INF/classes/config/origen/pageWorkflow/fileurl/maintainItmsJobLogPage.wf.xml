@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<page id="maintainItmsJobLogPage">
+    <main>
+        <process id="exceptionProcess">
+            <tablePopup id="view" title="view" process="exceptionProcess.view" enableType="single" containId="true" pageId="editItmsJobLogPage">
+                <enableExpression/>
+            </tablePopup>
+        </process>
+        <process id="reflect">
+            <tablePopup id="itmsTaskMethod" title="itmsTaskMethod" process="reflect.itmsTaskMethod" enableType="none" containId="false" pageId="editItmsTaskMethodPage">
+                <enableExpression/>
+            </tablePopup>
+            <tablePopup id="invokeMethod" title="invokeMethod" process="reflect.invokeMethod" enableType="none" containId="false" pageId="editInvokeMethodPage">
+                <enableExpression/>
+            </tablePopup>
+        </process>
+    </main>
+    <detail>
+        <process/>
+    </detail>
+</page>

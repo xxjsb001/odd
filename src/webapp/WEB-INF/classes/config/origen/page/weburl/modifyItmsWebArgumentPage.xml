@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pages>
+	<modifyDetailPage id="modifyItmsWebArgumentPage" title="modifyItmsWebArgumentPage" entityClass="com.vtradex.wms.server.model.webservice.ItmsWebArgument" onClose="refreshParent" width="450" height="500">
+        <initListeners/>
+	        <modify>
+           <inputUIs>
+            <hidden id="methods.id" title="methods.id"/>
+            <remote id="methods.url.id" title="url.company" row="1" col="2" span="1" readOnly="false" required="true" reserve="false" forceOverride="true" focusUI="false" inVisible="false"  multiple="false" manualEditable="true" displayColumn="2" percentSignPosition="both" displayedTableHead="序号,公司,URL,备注">
+                    <visibleExpression/>
+                    <hql><![CDATA[SELECT 
+url.id,
+url.company,
+url.url,
+url.description
+FROM ItmsWebUrl url
+WHERE 1=1
+AND (url.company LIKE :param)
+ 		]]></hql>
+                    <eventListeners>
+                    </eventListeners>
+            </remote>
+            <text id="methods.method" title="methods.method" row="3" col="1" span="1" readOnly="false" required="true" reserve="false" forceOverride="true" focusUI="false" inVisible="false" trimSpace="true">
+                <visibleExpression/>
+                <hql/>
+                <eventListeners/>
+            </text>
+            <text id="methods.jsonKey" title="methods.jsonKey" row="3" col="2" span="1" readOnly="false" required="false" reserve="false" forceOverride="true" focusUI="false" inVisible="false" trimSpace="true">
+                <visibleExpression/>
+                <hql/>
+                <eventListeners/>
+            </text>
+            <text id="methods.extTableName" title="methods.extTableName" row="4" col="1" span="1" readOnly="false" required="true" reserve="false" forceOverride="true" focusUI="false" inVisible="false" trimSpace="true">
+                <visibleExpression/>
+                <hql/>
+                <eventListeners/>
+            </text>
+            <list id="methods.dataSource" title="dir.dataSource" row="4" col="2" span="1" readOnly="false" required="true" reserve="false" forceOverride="true" forceSpace="false" multiple="false" inVisible="false" enumType="ItmsSqlTaskType">
+                <visibleExpression/>
+                <hql><![CDATA[SELECT 
+ enumerate.enumValue,
+ enumerate.enumValue From Enumerate enumerate 
+ where enumerate.enumType = 'ItmsSqlTaskType'
+ order by enumerate.id]]></hql>
+                <eventListeners>
+                </eventListeners>
+            </list>
+            <!-- 
+            <checkbox id="methods.isJob" title="methods.isJob" row="5" col="1" span="1" readOnly="false" required="false" reserve="false" forceOverride="true" focusUI="true" inVisible="false">
+				<visibleExpression/>
+				<hql/>
+				<eventListeners>
+					<eventListener id="methods.repeatTimes" index="1" refreshUI="true"/>
+				</eventListeners>
+			</checkbox>
+			 -->
+			<text id="methods.repeatTimes" title="sqlfile.repeatTimes" row="5" col="2" span="1" readOnly="false" required="true" reserve="false" forceOverride="true" focusUI="false" inVisible="false" validator="positiveIntegerRequired" trimSpace="true" defaultValue="0">
+<!--                 <visibleExpression><![CDATA[${methods.isJob}=='true' ]]></visibleExpression> -->
+                <hql/>
+                <eventListeners/>
+            </text>
+            <text id="methods.description" title="warehouse.description" row="7" col="1" span="2" width="302" readOnly="false" required="false" reserve="false" forceOverride="true" focusUI="false" inVisible="false" trimSpace="true">
+                <visibleExpression/>
+                <hql/>
+                <eventListeners/>
+            </text>
+        </inputUIs>
+        </modify>
+        <detail entityClass="com.vtradex.wms.server.model.webservice.ItmsWebColumn">
+            <datasource><![CDATA[SELECT columns.id,
+columns.jsonC,
+columns.jsonV
+ FROM ItmsWebColumn columns
+ LEFT JOIN columns.methods methods
+ WHERE 1=1
+ and columns.methods.id = {methods.id}
+ ORDER BY columns.id
+]]></datasource>
+	        <columns>
+	           	<column id="columns.id" title="columns.id" visible="false" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="long"/>
+	            <column id="columns.jsonC" title="columns.jsonC" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="string"/>
+	            <column id="columns.jsonV" title="columns.jsonV" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="string"/>
+	        </columns>
+        </detail>
+    </modifyDetailPage>
+</pages>

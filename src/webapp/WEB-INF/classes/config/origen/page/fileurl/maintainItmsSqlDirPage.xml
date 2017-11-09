@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pages>
+    <maintainPage id="maintainItmsSqlDirPage" title="maintainItmsSqlDirPage" autoQuery="true" entityClass="com.vtradex.wms.server.model.itms.ItmsSqlDir">
+        <workflow/>
+        <datasource><![CDATA[SELECT dir.id,
+dir.dirName,
+dir.repeatTimes,
+dir.dataSource,
+dir.status,
+dir.description,
+dir.updateInfo.createdTime,
+dir.updateInfo.creator,
+dir.updateInfo.updateTime,
+dir.updateInfo.lastOperator 
+ FROM ItmsSqlDir dir 
+ WHERE 1=1
+ AND dir.warehouse = #{SESSION_WAREHOUSE}
+ ORDER BY dir.id]]></datasource>
+        <columns>
+            <column id="dir.id" title="dir.id" visible="false" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="long"/>
+            <column id="dir.dirName" title="dir.dirName" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="string"/>
+            <column id="dir.repeatTimes" title="sqlfile.repeatTimes" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="integer"/>
+            <column id="dir.dataSource" title="dir.dataSource" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="enum" format="enumFormat" formatParam="ItmsSqlTaskType"/>
+            <column id="dir.status" title="warehouse.status" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="enum" format="enumFormat" formatParam="ItmsBaseStatus"/>
+            <column id="dir.description" title="warehouse.description" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="string"/>
+        	<column id="dir.updateInfo.createdTime" title="moveDoc.updateInfo.createdTime" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="date"/>
+			<column id="dir.updateInfo.creator" title="moveDoc.updateInfo.creator" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="string"/>
+            <column id="dir.updateInfo.updateTime" title="workDoc.updateTime" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="date"/>
+			<column id="dir.updateInfo.lastOperator" title="moveDoc.updateInfo.lastOperator" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="string"/>
+        </columns>
+    </maintainPage>
+</pages>

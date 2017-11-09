@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<page id="maintainItmsTablePage">
+    <main>
+        <process id="wmsWorkAreaProcess">
+            <tableCommit id="enable" title="enable" process="wmsWorkAreaProcess.enable" enableType="multi" multiMapping="false" download="false" closeTransactional="false" confirmMessage="confirm.maintainPage.enable">
+                <enableExpression/>
+                <mappings/>
+                <actions/>
+                <forwards/>
+            </tableCommit>
+            <tableCommit id="disable" title="disable" process="wmsWorkAreaProcess.disable" enableType="multi" multiMapping="false" download="false" closeTransactional="false" confirmMessage="confirm.maintainPage.disable">
+                <enableExpression/>
+                <mappings/>
+                <actions/>
+                <forwards/>
+            </tableCommit>
+            <tableCommit id="synonymName" title="synonymName" process="wmsWorkAreaProcess.synonymName" enableType="multi" multiMapping="false" download="false" closeTransactional="false" confirmMessage="confirm.wmsLocationBatch">
+                <enableExpression/>
+                <mappings/>
+                <actions>
+                    <action managerName="itmsLocationManager" methodName="synonymName" parameter="obj"/>
+                </actions>
+                <forwards/>
+            </tableCommit>
+            <tablePopup id="synonymHand" title="synonymHand" process="wmsWorkAreaProcess.synonymHand" enableType="single" containId="true" pageId="editSynonymHandPage">
+                <enableExpression/>
+            </tablePopup>
+            <tableCommit id="delete" title="delete" process="wmsWorkAreaProcess.delete" enableType="multi" multiMapping="false" download="false" closeTransactional="false" confirmMessage="confirm">
+                <enableExpression/>
+                <mappings/>
+                <actions>
+                    <action managerName="itmsLocationManager" methodName="deleteTable" parameter="obj"/>
+                </actions>
+                <forwards/>
+            </tableCommit>
+        </process>
+        <process id="lotRuleProcess">
+        	<tablePopup id="new" title="editWmsWorkAreaUpdatePage" process="lotRuleProcess.new" enableType="none" containId="false" pageId="editWmsWorkAreaUpdatePage">
+                <enableExpression/>
+            </tablePopup>
+        </process>
+    </main>
+    <detail/>
+</page>

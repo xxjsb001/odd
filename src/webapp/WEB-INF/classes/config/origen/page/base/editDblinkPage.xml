@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pages>
+    <editPage id="editDblinkPage" title="editDblinkPage" entityClass="com.vtradex.wms.server.model.itms.ItmsDbLinks" width="400" height="230" onClose="refreshParent">
+        <workflow/>
+        <initListeners/>
+        <inputUIs>
+            <hidden id="dblink.id" title="dblink.id" reserve="false"/>
+            <list id="dblink.sid.id" title="location.warehouseArea.id" row="1" col="1" span="1" width="118" readOnly="false" required="true" reserve="false" forceOverride="true" forceSpace="false" multiple="false" inVisible="false">
+                <visibleExpression/>
+                <hql><![CDATA[SELECT sid.id,
+sid.name
+FROM ItmsSid sid WHERE sid.status='ENABLED' 
+AND sid.warehouse = #{SESSION_WAREHOUSE}]]></hql>
+                <eventListeners>
+                		<eventListener id="dblink.owner.id" index="1" refreshUI="true"/>
+                </eventListeners>
+            </list>
+            <text id="dblink.dbLilnk" title="dblink.dbLilnk" row="1" col="2" span="1" readOnly="false" required="true" reserve="false" forceOverride="true" focusUI="false" inVisible="false" trimSpace="true">
+                <visibleExpression/>
+                <hql/>
+                <eventListeners/>
+            </text>
+			<list id="dblink.is.private" title="dblink.is.private" row="2" col="1" span="1" width="120" readOnly="false" required="true" reserve="false" forceOverride="true" forceSpace="false" multiple="false" inVisible="false" enumType="ItmsDbLinkOwner">
+                <visibleExpression/>
+                <hql><![CDATA[SELECT 
+ enumerate.enumValue,
+ enumerate.enumValue From Enumerate enumerate 
+ where enumerate.enumType = 'ItmsDbLinkOwner' 
+ order by enumerate.id]]></hql>
+                <eventListeners>
+                	<eventListener id="dblink.owner.id" refreshUI="true"/>
+                </eventListeners>
+            </list>
+            <remote id="dblink.owner.id" title="dblink.owner" row="2" col="2" span="1" readOnly="false" required="true" reserve="false" forceOverride="true" focusUI="false" inVisible="false"  multiple="false" manualEditable="true" displayColumn="2" percentSignPosition="both" displayedTableHead="序号,名称,SID,服务,备注">
+                    <visibleExpression><![CDATA[function x(){
+   					if(${dblink.is.private}=='private'){
+						 return true;
+					}else{
+						 return false;
+					}
+				};x();]]></visibleExpression>
+                    <hql><![CDATA[SELECT 
+u.id,
+u.code,
+u.location.warehouseArea.name,
+u.location.warehouseArea.warehouse.name,
+u.description
+FROM ItmsUsers u
+LEFT JOIN u.location location
+WHERE 1=1 AND u.status = 'ENABLED'
+AND u.location.warehouseArea.warehouse = #{SESSION_WAREHOUSE}
+AND u.location.warehouseArea.id = {dblink.sid.id}
+AND u.name is not null
+AND (u.code LIKE :param)
+ORDER BY u.location.code,u.code
+ 		]]></hql>
+                    <eventListeners>
+                    </eventListeners>
+            </remote>
+            <text id="dblink.userName" title="dblink.userName" row="3" col="1" span="1" readOnly="false" required="true" reserve="false" forceOverride="true" focusUI="false" inVisible="false" trimSpace="true">
+                <visibleExpression/>
+                <hql/>
+                <eventListeners/>
+            </text>
+            <text id="dblink.passWord" title="dblink.passWord" row="3" col="2" span="1" readOnly="false" required="true" reserve="false" forceOverride="true" focusUI="false" inVisible="false" trimSpace="true">
+                <visibleExpression/>
+                <hql/>
+                <eventListeners/>
+            </text>
+            <textArea id="dblink.host" title="dblink.host" row="4" col="1" span="2" readOnly="false" required="true" reserve="false" forceOverride="true" focusUI="false" inVisible="false" rows="3" cols="40">
+                <visibleExpression/>
+                <hql/>
+                <eventListeners/>
+            </textArea>
+            <text id="workArea.description" title="location.description" row="5" col="1" span="2" width="302" readOnly="false" required="false" reserve="false" forceOverride="true" focusUI="false" inVisible="false" trimSpace="true">
+                <visibleExpression/>
+                <hql/>
+                <eventListeners/>
+            </text>
+        </inputUIs>
+    </editPage>
+</pages>

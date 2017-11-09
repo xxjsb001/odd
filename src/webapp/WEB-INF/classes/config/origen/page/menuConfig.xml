@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<menus>
+    <menuItem title="menu_base" dir="base">
+        <menuItem title="menu_maintainWarehousePage" pageId="maintainWarehousePage"/>
+        <menuItem title="menu_maintainWmsWarehouseAreaPage" pageId="maintainWmsWarehouseAreaPage"/>
+        <menuItem title="menu_maintainTableSpacesPage" pageId="maintainTableSpacesPage"/>
+        <menuItem title="maintainItmsUsersPage" pageId="maintainItmsUsersPage"/>
+        <menuItem title="menu_maintainItmsTablePage" pageId="maintainItmsTablePage"/>
+        <menuItem title="menu_maintainMiddleCompanyExtendsPage" pageId="maintainMiddleCompanyExtendsPage"/>
+        <menuItem title="menu_maintainItmsSynonymsPage" pageId="maintainItmsSynonymsPage"/>
+        <menuItem title="menu_maintainItmsDbLinksPage" pageId="maintainItmsDbLinksPage"/>
+        <menuItem title="menu_maintainItmsUserOnOffPage" pageId="maintainItmsUserOnOffPage"/>
+        <menuItem title="interval_table" dir="interval">
+            <menuItem title="maintainIntervalLogPage" pageId="maintainIntervalLogPage"/>
+        </menuItem>
+        <menuItem title="job_files" dir="jobFiles">
+            <menuItem title="maintainItmsSqlDirPage" pageId="maintainItmsSqlDirPage"/>
+            <menuItem title="maintainItmsSqlExecutePage" pageId="maintainItmsSqlExecutePage"/>
+            <menuItem title="maintainItmsJobLogPage" pageId="maintainItmsJobLogPage"/>
+            <menuItem title="maintainItmsTaskPage" pageId="maintainItmsTaskPage"/>
+            <menuItem title="maintainItmsJobEmailPage" pageId="maintainItmsJobEmailPage"/>
+        </menuItem>
+        <menuItem title="menu_web_url" dir="weburl">
+            <menuItem title="maintainItmsWebUrlPage" pageId="maintainItmsWebUrlPage"/>
+            <menuItem title="maintainItmsWebArgumentPage" pageId="maintainItmsWebArgumentPage"/>
+            <menuItem title="maintainItmsInterfaceTablePage" pageId="maintainItmsInterfaceTablePage"/>
+        </menuItem>
+    </menuItem>
+    <menuItem title="menu_file" dir="approve">
+    	<menuItem title="menu_doc" dir="myDoc">
+            <menuItem title="maintainItmsMyDocPage" pageId="maintainItmsMyDocPage"/>
+            <menuItem title="maintainItmsShareDocPage" pageId="maintainItmsShareDocPage"/>
+        </menuItem>
+        <menuItem title="menu_maintainItmsFilesPage" pageId="maintainItmsFilesPage"/>
+        <menuItem title="menu_maintainJacProjectUrlPage" pageId="maintainJacProjectUrlPage"/>
+        <menuItem title="menu_maintainItmsInterfaceEmailRulePage" pageId="maintainItmsInterfaceEmailRulePage"/>
+    </menuItem>
+    <menuItem title="menu_rule" dir="rule">
+        <menuItem title="t_ruleManager" dir="ruleManager">
+            <menuItem title="t_maintainRulePage" pageId="maintainRulePage"/>
+            <menuItem title="t_maintainGroupRuleTablePage" pageId="maintainGroupRuleTablePage"/>
+            <menuItem title="t_maintainRuleTablePage" pageId="maintainRuleTablePage"/>
+        </menuItem>
+        <menuItem title="t_maintainRuleTableVersionPage" pageId="maintainRuleTableVersionPage"/>
+        <menuItem title="t_maintainPrettifyRuleTablePage" pageId="maintainPrettifyRuleTablePage"/>
+    </menuItem>
+    <menuItem title="menu_report" pageId="customerReportFilePage" dir="report"/>
+    <menuItem title="menu_security" dir="security">
+        <menuItem title="menu_right">
+            <menuItem title="maintainUserPage" pageId="maintainUserPage"/>
+            <menuItem title="maintainRolePage" pageId="maintainRolePage"/>
+            <menuItem title="maintainGroupPage" pageId="maintainGroupPage"/>
+        </menuItem>
+        <menuItem title="menu_import">
+            <menuItem title="maintainBOPage" pageId="maintainBOPage"/>
+            <menuItem title="importBOPage" pageId="importBOPage"/>
+        </menuItem>
+        <menuItem title="maintainReportConfigPage" pageId="maintainReportConfigPage"/>
+        <menuItem title="maintainIGPPage" pageId="maintainIGPPage"/>
+        <menuItem title="maintainWelcomePage" pageId="maintainWelcomePage"/>
+        <menuItem title="maintainRuleExceptionLogPage" pageId="maintainRuleExceptionLogPage"/>
+        <menuItem title="maintainExceptionLogPage" pageId="maintainExceptionLogPage"/>
+        <menuItem title="maintainImportRecordPage" pageId="maintainImportRecordPage"/>
+    </menuItem>
+</menus>

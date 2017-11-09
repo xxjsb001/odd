@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pages>
+    <maintainPage id="maintainIntervalLogPage" title="maintainIntervalLogPage" autoQuery="true" entityClass="com.vtradex.wms.server.model.itms.IntervalLog">
+        <workflow/>
+        <datasource><![CDATA[SELECT iLog.id,
+iLog.code,
+iLog.zone.code,
+iLog.zone.user.code,
+iLog.zone.user.location.code,
+iLog.isBf,
+iLog.bakTableName,
+iLog.iTimes,
+iLog.status,
+iLog.interName,
+iLog.rangeName,
+iLog.updateInfo.createdTime,
+iLog.updateInfo.creator,
+iLog.updateInfo.updateTime,
+iLog.updateInfo.lastOperator
+ FROM IntervalLog iLog 
+ WHERE 1=1
+ AND iLog.zone.user.warehouse = #{SESSION_WAREHOUSE}
+ ORDER BY iLog.id DESC]]></datasource>
+        <columns>
+            <column id="iLog.id" title="iLog.id" visible="false" sortable="false" horizonAlign="center" verticalAlign="middle" dataType="long"/>
+            <column id="iLog.code" title="iLog.code" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="string"/>
+            <column id="iLog.zone.code" title="table.tableName" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="string"/>
+            <column id="iLog.zone.user.code" title="iLog.zone.user.code" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="string"/>
+            <column id="iLog.zone.user.location.code" title="location.code" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="string"/>
+			<column id="iLog.isBf" title="iLog.isBf" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="boolean" format="booleanFormat"/>
+			<column id="iLog.bakTableName" title="iLog.bakTableName" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="string"/>
+            <column id="iLog.iTimes" title="iTimes.iTimes" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="string"/>
+            <column id="iLog.status" title="location.status" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="enum" format="enumFormat" formatParam="WmsMoveDocStatus"/>
+            <column id="iLog.interName" title="iLog.interName" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="string"/>
+            <column id="iLog.rangeName" title="iLog.rangeName" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="string"/>
+            <column id="iLog.updateInfo.createdTime" title="moveDoc.updateInfo.createdTime" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="date"/>
+			<column id="iLog.updateInfo.creator" title="moveDoc.updateInfo.creator" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="string"/>
+            <column id="iLog.updateInfo.updateTime" title="workDoc.updateTime" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="date"/>
+			<column id="iLog.updateInfo.lastOperator" title="moveDoc.updateInfo.lastOperator" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="string"/>
+		</columns>
+    </maintainPage>
+</pages>

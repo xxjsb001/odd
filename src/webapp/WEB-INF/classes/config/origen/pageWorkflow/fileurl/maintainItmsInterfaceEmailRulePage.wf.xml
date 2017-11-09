@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<page id="maintainItmsInterfaceEmailRulePage">
+    <main>
+        <process id="inventoryProcess">
+            <tablePopup id="new" title="new" process="inventoryProcess.modify" enableType="none" containId="false" maintain="false" pageId="editItmsInterfaceEmailRulePage">
+                <enableExpression/>
+            </tablePopup>
+            <tablePopup id="edit" title="edit" process="inventoryProcess.viewTask" enableType="single" containId="true" maintain="false" pageId="editItmsInterfaceEmailRulePage">
+                <enableExpression/>
+            </tablePopup>
+            <tableCommit id="enable" title="enable" process="inventoryProcess.viewSerialNo" enableType="multi" download="false" confirmMessage="confirm.enable">
+                <enableExpression/>
+                <mappings/>
+                <actions/>
+                <forwards/>
+            </tableCommit>
+            <tableCommit id="disable" title="disable" process="inventoryProcess.initInventory" enableType="multi" download="false" confirmMessage="confirm.disable">
+                <enableExpression/>
+                <mappings/>
+                <actions/>
+                <forwards/>
+            </tableCommit>
+        </process>
+    </main>
+    <detail/>
+</page>

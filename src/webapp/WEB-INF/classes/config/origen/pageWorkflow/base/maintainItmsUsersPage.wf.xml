@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<page id="maintainItmsUsersPage">
+    <main>
+        <process id="normalEditProcess">
+            <tablePopup id="new" title="new" process="normalEditProcess.new" enableType="none" containId="false" pageId="modifyItmsUsersPage">
+                <enableExpression/>
+            </tablePopup>
+            <tablePopup id="edit" title="edit" process="normalEditProcess.edit" enableType="single" containId="true" pageId="modifyItmsUsersPage">
+                <enableExpression/>
+            </tablePopup>
+            <tableCommit id="enable" title="enable" process="normalEditProcess.enable" enableType="multi" download="false">
+                <enableExpression/>
+                <mappings/>
+                <actions>
+                    <action managerName="itmsOrganizationManager" methodName="enableWorkUser" parameter="obj"/>
+                </actions>
+                <forwards/>
+            </tableCommit>
+            <tableCommit id="disable" title="disable" process="normalEditProcess.disable" enableType="multi" download="false">
+                <enableExpression/>
+                <mappings/>
+                <actions/>
+                <forwards/>
+            </tableCommit>
+        </process>
+        <process id="itmsUserProcess">
+            <tablePopup id="ionization" title="ionization" process="itmsUserProcess.ionization" enableType="single" containId="true" pageId="maintainIonizationPage" managerName="itmsOrganizationManager" methodName="ionizationTable">
+                <enableExpression/>
+            </tablePopup>
+        </process>
+        <process id="normalProcess">
+            <tableCommit id="delete" title="delete" process="normalProcess.delete" enableType="multi" download="false">
+                <enableExpression/>
+                <mappings/>
+                <actions>
+                    <action managerName="itmsOrganizationManager" methodName="deleteWorkUser" parameter="obj"/>
+                </actions>
+                <forwards/>
+            </tableCommit>
+        </process>
+        <process id="lotRuleProcess">
+            <tablePopup id="editItmsUsersUpdatePage" title="editItmsUsersUpdatePage" process="lotRuleProcess.edit" enableType="none" containId="false" pageId="editItmsUsersUpdatePage">
+                <enableExpression/>
+            </tablePopup>
+        </process>
+    </main>
+    <detail/>
+</page>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pages>
+    <editPage id="editMiddleCompanyExtendsPage" title="editMiddleCompanyExtendsPage" entityClass="com.vtradex.wms.server.model.middle.ItmsAuthority" width="580" height="170" onClose="refreshParent">
+        <workflow/>
+        <initListeners/>
+        <inputUIs>
+            <hidden id="mce.id" title="mce.id" reserve="false"/>
+            
+            <list id="mce.sender" title="mce.sender" row="1" col="1" span="1" width="120" readOnly="false" required="true" reserve="false" forceOverride="true" forceSpace="false" multiple="false" inVisible="false" enumType="TypeOfBill">
+                <visibleExpression/>
+                <hql><![CDATA[SELECT 
+ enumerate.enumValue,
+ enumerate.enumValue From Enumerate enumerate 
+ where enumerate.enumType = 'TypeOfBill' order by enumerate.id]]></hql>
+                <eventListeners>
+                </eventListeners>
+            </list>
+            <remote id="mce.worker.id" title="mce.worker.id" row="2" col="1" span="1" readOnly="false" required="true" reserve="false" forceOverride="true" focusUI="false" inVisible="false"  multiple="false" manualEditable="true" displayColumn="3" percentSignPosition="both" displayedTableHead="序号,名称">
+                    <visibleExpression/>
+                    <hql><![CDATA[SELECT 
+u.id,
+u.code
+FROM ItmsUsers u
+WHERE 1=1 AND u.status = 'ENABLED'
+AND (u.code LIKE :param)
+ 		]]></hql>
+                    <eventListeners>
+                    </eventListeners>
+            </remote>
+            <remote id="mce.workrea.id" title="mce.workrea.id" row="2" col="2" span="1" readOnly="false" required="true" reserve="false" forceOverride="true" focusUI="false" inVisible="false" multiple="false" manualEditable="true" displayColumn="3" percentSignPosition="both" displayedTableHead="序号,表名,描述">
+                    <visibleExpression/>
+                    <hql><![CDATA[SELECT 
+workrea.id,
+workrea.code,
+workrea.description
+FROM ItmsTable workrea
+WHERE 1=1
+AND workrea.status = 'ENABLED'
+AND (workrea.code LIKE :param OR workrea.description LIKE :param)
+ 		]]></hql>
+                    <eventListeners>
+                    </eventListeners>
+                </remote>
+                
+            <text id="mce.description" title="billType.description" row="3" col="1" span="2" width="320" readOnly="false" required="false" reserve="false" forceOverride="true" focusUI="false" inVisible="false" trimSpace="true">
+                <visibleExpression/>
+                <hql/>
+                <eventListeners/>
+            </text>
+        </inputUIs>
+    </editPage>
+</pages>

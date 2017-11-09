@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<page id="editItmsUsersUpdatePage">
+    <main>
+        <process id="lotRuleProcess">
+            <formCommit id="save" title="save" process="lotRuleProcess.edit" enableType="none" multiMapping="false" download="false" closeTransactional="false" visibleType="new">
+                <enableExpression/>
+                <mappings>
+                	<mapping id="worker.location.id" className="long">
+                        <entries/>
+                    </mapping>
+                    <mapping id="worker.description" className="string">
+                        <entries/>
+                    </mapping>
+                    <mapping id="worker.type" className="string">
+                        <entries/>
+                    </mapping>
+                </mappings>
+                <actions>
+                    <action managerName="itmsLocationManager" methodName="updateWorker" parameter="worker.location.id,worker.description,worker.type"/>
+                </actions>
+                <forwards>
+                    <forward name="refreshParent" newEnabled="true" editEnabled="true"/>
+                    <forward name="resetWindow" newEnabled="true" editEnabled="true"/>
+                </forwards>
+            </formCommit>
+        </process>
+    </main>
+    <detail/>
+</page>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pages>
+    <maintainPage id="maintainItmsInterfaceTablePage" title="maintainItmsInterfaceTablePage" autoQuery="true" entityClass="com.vtradex.wms.server.model.webservice.ItmsInterfaceTable">
+        <workflow/>
+        <datasource><![CDATA[SELECT iTable.id,
+iTable.extTableName,
+iTable.dataSource,
+iTable.status,
+iTable.description,
+iTable.updateInfo.createdTime,
+iTable.updateInfo.creator,
+iTable.updateInfo.updateTime,
+iTable.updateInfo.lastOperator 
+ FROM ItmsInterfaceTable iTable 
+ WHERE 1=1
+ ORDER BY iTable.id]]></datasource>
+        <columns>
+            <column id="iTable.id" title="iTable.id" visible="false" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="long"/>
+            <column id="iTable.extTableName" title="methods.extTableName" visible="true" sortable="true" horizonAlign="left" verticalAlign="middle" dataType="string"/>
+            <column id="iTable.dataSource" title="dir.dataSource" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="enum" format="enumFormat" formatParam="ItmsSqlTaskType"/>
+            <column id="iTable.status" title="warehouse.status" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="enum" format="enumFormat" formatParam="BaseStatus"/>
+            <column id="iTable.description" title="warehouse.description" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="string"/>
+        	<column id="iTable.updateInfo.createdTime" title="moveDoc.updateInfo.createdTime" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="date"/>
+			<column id="iTable.updateInfo.creator" title="moveDoc.updateInfo.creator" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="string"/>
+            <column id="iTable.updateInfo.updateTime" title="workDoc.updateTime" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="date"/>
+			<column id="iTable.updateInfo.lastOperator" title="moveDoc.updateInfo.lastOperator" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="string"/>
+        </columns>
+    </maintainPage>
+</pages>

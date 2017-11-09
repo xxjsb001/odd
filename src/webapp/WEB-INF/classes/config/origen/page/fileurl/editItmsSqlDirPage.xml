@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pages>
+    <editPage id="editItmsSqlDirPage" title="editItmsSqlDirPage" entityClass="com.vtradex.wms.server.model.itms.ItmsSqlDir" onClose="refreshParent">
+        <workflow/>
+        <initListeners/>
+        <inputUIs>
+            <hidden id="dir.id" title="dir.id"/>
+            <text id="dir.dirName" title="dir.dirName" row="1" col="1" span="1" readOnly="false" required="true" reserve="false" forceOverride="true" focusUI="false" inVisible="false" editModel="editable" trimSpace="true">
+                <visibleExpression/>
+                <hql/>
+                <eventListeners/>
+            </text>
+            <text id="dir.repeatTimes" title="sqlfile.repeatTimes" row="2" col="1" span="1" readOnly="false" required="false" reserve="false" forceOverride="true" focusUI="false" inVisible="false" validator="positiveIntegerRequired" trimSpace="true">
+                <hql/>
+                <eventListeners/>
+            </text>
+            <list id="dir.dataSource" title="dir.dataSource" row="3" col="1" span="1" readOnly="false" required="true" reserve="false" forceOverride="true" forceSpace="false" multiple="false" inVisible="false" enumType="ItmsSqlTaskType">
+                <visibleExpression/>
+                <hql><![CDATA[SELECT 
+ enumerate.enumValue,
+ enumerate.enumValue From Enumerate enumerate 
+ where enumerate.enumType = 'ItmsSqlTaskType'
+ order by enumerate.id]]></hql>
+                <eventListeners>
+                </eventListeners>
+            </list>
+            <text id="dir.description" title="warehouse.description" row="7" col="1" span="2" width="302" readOnly="false" required="false" reserve="false" forceOverride="true" focusUI="false" inVisible="false" trimSpace="true">
+                <visibleExpression/>
+                <hql/>
+                <eventListeners/>
+            </text>
+        </inputUIs>
+    </editPage>
+</pages>

@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC
+        "-//SPRING//DTD BEAN//EN"
+        "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<!--
+  Copyright (c) 2001-2005 vTradEx Information Technology Co.,Ltd. All Rights Reserved.
+
+  This software is the confidential and proprietary information of vTradEx
+  Information Technology Co.,Ltd. ("Confidential Information").  You shall not
+  disclose such Confidential Information and shall use it only in
+  accordance with the terms of the license agreement you entered into
+  with vTradEx.
+
+  VTRADEX MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+  SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+  IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
+  PURPOSE, OR NON-INFRINGEMENT. VTRADEX SHALL NOT BE LIABLE FOR ANY DAMAGES
+  SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING
+  THIS SOFTWARE OR ITS DERIVATIVES.
+-->
+<!-- $Id: serviceContext.xml,v 1.12 2017/05/12 10:08:48 yongcheng.min Exp $ -->
+<beans>
+	<bean id="itmsGlobalParamUtils" class="com.vtradex.wms.server.service.GlobalParamUtils"/>
+    <bean id="itmsCommonDao" class="com.vtradex.wms.server.service.sequence.pojo.HibernateWmsCommonDao" parent="commonDao"/>
+	<bean id="itmsUserManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean class="com.vtradex.wms.server.service.security.pojo.DefaultItmsUserManager" parent="baseManager">
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="itmsUserPasswordManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean class="com.vtradex.wms.server.service.security.pojo.DefaultUserPasswordManager" parent="baseManager">
+				<constructor-arg>
+					<ref bean="userManager"></ref>
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="itmsWarehouseManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean class="com.vtradex.wms.server.service.security.pojo.DefaultItmsWarehouseManager" parent="baseManager">
+				<constructor-arg>
+					<ref bean="userManager"></ref>
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	<bean id="itmsWarehouseAreaManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean class="com.vtradex.wms.server.service.base.pojo.DefaultItmsWarehouseAreaManager" parent="baseManager">
+				<constructor-arg index="0">
+					<ref bean="workflowManager"></ref>
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	<bean id="itmsLocationManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean class="com.vtradex.wms.server.service.base.pojo.DefaultItmsLocationManager" parent="baseManager">
+				<constructor-arg index="0">
+					<ref bean="workflowManager"></ref>
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="reflectMethodManager"></ref>
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	<bean id="itmsOrganizationManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean class="com.vtradex.wms.server.service.base.pojo.DefaultItmsOrganizationManager" parent="baseManager">
+				<property name="jdbcDataSource">
+		          	<ref bean="jdbcDataSource" />
+		       	</property>
+		       	<constructor-arg index="0">
+					<ref bean="itmsLogManager"></ref>
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+		
+	
+	<bean id="itmsFilesManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean class="com.vtradex.wms.server.service.files.pojo.DefaultItmsFilesManager" parent="baseManager" >	
+				<constructor-arg index="0">
+					<ref bean="workflowManager"></ref>
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="itmsLocationManager"></ref>
+				</constructor-arg>
+				<constructor-arg index="2">
+					<ref bean="itmsLogManager"></ref>
+				</constructor-arg>		
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="intervalManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean class="com.vtradex.wms.server.service.interval.IntervalManagerImp" parent="baseManager">
+			</bean>
+		</property>
+	</bean>
+	<bean id="jdbcDataSource"
+        class="org.springframework.jdbc.core.JdbcTemplate" abstract="false"
+        lazy-init="false" autowire="default" dependency-check="default">
+        <property name="dataSource">
+            <ref bean="dataSource" />
+        </property>
+    </bean>
+	<bean id="jdbcExtendDataNo1"
+        class="org.springframework.jdbc.core.JdbcTemplate" abstract="false"
+        lazy-init="false" autowire="default" dependency-check="default">
+        <property name="dataSource">
+            <ref bean="extendDataNo1" />
+        </property>
+    </bean>
+    <bean id="jdbcExtendDataNo2"
+        class="org.springframework.jdbc.core.JdbcTemplate" abstract="false"
+        lazy-init="false" autowire="default" dependency-check="default">
+        <property name="dataSource">
+            <ref bean="extendDataNo2" />
+        </property>
+    </bean>
+    <bean id="jdbcExtendDataNo3"
+        class="org.springframework.jdbc.core.JdbcTemplate" abstract="false"
+        lazy-init="false" autowire="default" dependency-check="default">
+        <property name="dataSource">
+            <ref bean="extendDataNo3" />
+        </property>
+    </bean>
+    <bean id="jdbcExtendDataNo4"
+        class="org.springframework.jdbc.core.JdbcTemplate" abstract="false"
+        lazy-init="false" autowire="default" dependency-check="default">
+        <property name="dataSource">
+            <ref bean="extendDataNo4" />
+        </property>
+    </bean>
+    <bean id="jdbcExtendDataNo5"
+        class="org.springframework.jdbc.core.JdbcTemplate" abstract="false"
+        lazy-init="false" autowire="default" dependency-check="default">
+        <property name="dataSource">
+            <ref bean="extendDataNo5" />
+        </property>
+    </bean>
+    <bean id="jdbcExtendDataNo6"
+        class="org.springframework.jdbc.core.JdbcTemplate" abstract="false"
+        lazy-init="false" autowire="default" dependency-check="default">
+        <property name="dataSource">
+            <ref bean="extendDataNo6" />
+        </property>
+    </bean>
+    
+	<bean id="itmsLogManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean class="com.vtradex.wms.server.service.interfaceLog.ItmsLogManagerImp" parent="baseManager">
+			</bean>
+		</property>
+	</bean>
+	<bean id="ediExecuteSql" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean class="com.vtradex.wms.server.service.interfaceLog.EdiExecuteSqlImp" parent="baseManager">
+				<constructor-arg index="0">
+					<ref bean="itmsLogManager"></ref>
+				</constructor-arg>
+		       	<constructor-arg index="1">
+					<ref bean="reflectMethodManager"></ref>
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	<bean id="appExecuteData" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean class="com.vtradex.wms.server.service.interfaceLog.AppExecuteDataImp" parent="baseManager">
+				<constructor-arg index="0">
+					<ref bean="itmsLogManager"></ref>
+				</constructor-arg>
+		       	<property name="jdbcDataSource">
+		          	<ref bean="jdbcDataSource" />
+		       	</property>
+			</bean>
+		</property>
+	</bean>
+	<bean id="webExecuteData" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean class="com.vtradex.wms.server.service.interfaceLog.WebExecuteDataImp" parent="baseManager">
+				<constructor-arg index="0">
+					<ref bean="itmsLogManager"></ref>
+				</constructor-arg>
+				<constructor-arg index="1">
+					<ref bean="reflectMethodManager"></ref>
+				</constructor-arg>
+		       	<property name="jdbcDataSource">
+		          	<ref bean="jdbcDataSource" />
+		       	</property>
+			</bean>
+		</property>
+	</bean>
+	<bean id="reflectMethodManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean class="com.vtradex.wms.server.service.reflect.ReflectMethodManagerImp" parent="baseManager">
+			</bean>
+		</property>
+	</bean>
+	<bean id="jdbcExtendDataExt" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean class="com.vtradex.wms.server.service.interfaceLog.JdbcExtendDataExtImp" parent="baseManager">
+				<property name="jdbcExtendDataNo0">
+		          	<ref bean="jdbcDataSource" />
+		       	</property>
+		       	<property name="jdbcExtendDataNo1">
+		          	<ref bean="jdbcExtendDataNo1" />
+		       	</property>
+		       	<property name="jdbcExtendDataNo2">
+		          	<ref bean="jdbcExtendDataNo2" />
+		       	</property>
+		       	<property name="jdbcExtendDataNo3">
+		          	<ref bean="jdbcExtendDataNo3" />
+		       	</property>
+		       	<property name="jdbcExtendDataNo4">
+		          	<ref bean="jdbcExtendDataNo4" />
+		       	</property>
+		       	<property name="jdbcExtendDataNo5">
+		          	<ref bean="jdbcExtendDataNo5" />
+		       	</property>
+		       	<property name="jdbcExtendDataNo6">
+		          	<ref bean="jdbcExtendDataNo6" />
+		       	</property>
+			</bean>
+		</property>
+	</bean>
+	<bean id="emailManager" parent="abstractTransactionProxy">
+		<property name="target">
+			<bean class="com.vtradex.wms.server.service.email.pojo.DefaultEmailManager" parent="baseManager">
+				<property name="mailSender" ref="mailSender" />
+				<property name="host">
+<!-- 					<value>smtp.163.com</value> -->
+					<value>smtp.jac.com.cn</value>
+				</property>
+				<property name="userName">
+<!-- 					<value>gongwn</value> -->
+					<value>ccgs.wlgs@jac.com.cn</value>
+				</property>
+				<property name="password">
+<!-- 					<value>WT941027</value> -->
+					<value>Hello123</value>
+				</property>
+				<property name="from">
+<!-- 					<value>gongwn@163.com</value> -->
+					<value>ccgs.wlgs@jac.com.cn</value>
+				</property>
+				<constructor-arg index="0">
+					<ref bean="mailResourceLoader" />
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+</beans>

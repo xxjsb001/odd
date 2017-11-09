@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pages>
+    <modifyDetailPage id="modifyIntervalLogPage" title="modifyIntervalLogPage" entityClass="com.vtradex.wms.server.model.itms.IntervalLog" onClose="refreshParent" width="820" height="850">
+        <initListeners>
+<!--             <initListener id="o.code" managerName="orderManager" methodName="getOrderCode" newEnabled="true"/> -->
+        </initListeners>
+        <modify>
+            <inputUIs>
+                <hidden id="iLog.id" title="iLog.id" reserve="false"/>
+                <hidden id="iLog.status" title="iLog.status" reserve="false"/>
+                <remote id="workArea.user.id" title="mce.worker.id" row="1" col="1" span="1" readOnly="false" required="true" reserve="false" forceOverride="true" focusUI="false" inVisible="false"  multiple="false" manualEditable="true" displayColumn="3" percentSignPosition="both" displayedTableHead="序号,名称">
+                    <visibleExpression/>
+                    <hql><![CDATA[SELECT 
+u.id,
+u.code
+FROM ItmsUsers u
+WHERE 1=1 AND u.status = 'ENABLED'
+AND u.warehouse = #{SESSION_WAREHOUSE}
+AND (u.code LIKE :param)
+ 		]]></hql>
+                    <eventListeners>
+                    	<eventListener id="xxx" index="2" refreshUI="false"/>
+                    </eventListeners>
+            	</remote>
+	            <text id="xxx" title="xxx" row="2" col="1" span="1" readOnly="true" required="false" reserve="false" forceOverride="true" focusUI="false" inVisible="true" editModel="normal" trimSpace="true">
+	                <visibleExpression/>
+	                <hql/>
+	                <eventListeners>
+	                   <eventListener id="iLog.zone.id" index="1" refreshUI="true"/>
+	                </eventListeners>
+	            </text>
+                <remote id="iLog.zone.id" title="table.tableName" row="1" col="3" span="1" readOnly="false" required="true" reserve="false" forceOverride="false" focusUI="false" inVisible="false" multiple="false" manualEditable="true" displayColumn="2" percentSignPosition="both" displayedTableHead="序号,表名,用户,行数">
+                    <visibleExpression/>
+                    <hql><![CDATA[select 
+zone.id,
+zone.code,
+zone.user.code,
+zone.numRows
+From ItmsTable zone
+where 1=1 AND 
+( zone.code like :param OR zone.user.code like :param)
+AND zone.user.warehouse = #{SESSION_WAREHOUSE}
+AND zone.user.code = ${xxx}
+AND  zone.status='ENABLED' ]]></hql>
+                    <eventListeners/>
+                </remote>
+                <checkbox id="iLog.isBf" title="iLog.isBf" row="2" col="1" defaultValue="FALSE" span="1" readOnly="false" required="false" reserve="false" forceOverride="true" focusUI="true" inVisible="false">
+                    <visibleExpression/>
+                    <hql/>
+                    <eventListeners>
+                    </eventListeners>
+                </checkbox>
+                <text id="iLog.interName" title="iLog.interName" row="2" col="2" span="1" readOnly="false" required="false" reserve="false" forceOverride="true" focusUI="false" inVisible="false" editModel="editable" trimSpace="true">
+                <visibleExpression/>
+                <hql/>
+                <eventListeners/>
+            	</text>
+            	<text id="iLog.rangeName" title="iLog.rangeName" row="2" col="3" span="1" readOnly="false" required="false" reserve="false" forceOverride="true" focusUI="false" inVisible="false" editModel="editable" trimSpace="true">
+                <visibleExpression/>
+                <hql/>
+                <eventListeners/>
+            	</text>
+            </inputUIs>
+        </modify>
+        <detail entityClass="com.vtradex.wms.server.model.itms.IntervalTimes" displayRowCount="50">
+            <datasource><![CDATA[SELECT iTimes.id,iTimes.line,iTimes.iTimes,iTimes.isDrop FROM IntervalTimes iTimes 
+WHERE 1=1 
+AND iTimes.iLog.id = {iLog.id}
+ORDER BY iTimes.line ASC]]></datasource>
+            <columns>
+                <column id="iTimes.id" title="iTimes.id" visible="false" sortable="true" horizonAlign="center" verticalAlign="middle"/>
+                <column id="iTimes.line" title="iTimes.line" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="integer"/>
+                <column id="iTimes.iTimes" title="iTimes.iTimes" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle"/>
+                <column id="iTimes.isDrop" title="iTimes.isDrop" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="boolean" format="booleanFormat"/>
+            </columns>
+        </detail>
+    </modifyDetailPage>
+</pages>

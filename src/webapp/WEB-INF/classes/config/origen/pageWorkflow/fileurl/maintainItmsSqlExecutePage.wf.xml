@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<page id="maintainItmsSqlExecutePage">
+    <main>
+        <process id="itmsFilesProcess">
+            <tablePopup id="importFile" title="importFile" process="itmsFilesProcess.importFile" enableType="none" containId="false" pageId="importSqlFilePage">
+                <enableExpression/>
+            </tablePopup>
+            <!-- 
+            <tablePopup id="newFile" title="newFile" process="itmsFilesProcess.newFile" enableType="none" containId="false" maintain="false" pageId="editItmsSqlExecutePage">
+                <enableExpression/>
+            </tablePopup>
+             -->
+            <tablePopup id="editFile" title="editFile" process="itmsFilesProcess.editFile" enableType="single" containId="true" maintain="false" pageId="editItmsSqlExecutePage">
+                <enableExpression/>
+            </tablePopup>
+            <tableCommit id="enable" title="enable" process="itmsFilesProcess.enable" enableType="multi" download="false" confirmMessage="confirm.enable">
+                <enableExpression/>
+                <mappings/>
+                <actions>
+                    <action managerName="itmsFilesManager" methodName="activeSqlFile" parameter="obj"/>
+                </actions>
+                <forwards/>
+            </tableCommit>
+            <tableCommit id="disable" title="disable" process="itmsFilesProcess.disable" enableType="multi" download="false" confirmMessage="confirm.disable">
+                <enableExpression/>
+                <mappings/>
+                <actions/>
+                <forwards/>
+            </tableCommit>
+            <tableCommit id="deleteFile" title="deleteFile" process="itmsFilesProcess.deleteFile" enableType="multi" download="false" confirmMessage="confirm.maintainWmsMasterPlanNomalPage.delete">
+                <enableExpression/>
+                <mappings/>
+                <actions>
+                    <action managerName="itmsFilesManager" methodName="deleteSqlFile" parameter="obj"/>
+                </actions>
+                <forwards/>
+            </tableCommit>
+            <tableCommit id="initAllSqlFiles" title="initAllSqlFiles" process="itmsFilesProcess.initAllSqlFiles" enableType="none" download="false" confirmMessage="confirmAdd">
+                <enableExpression/>
+                <mappings/>
+                <actions>
+                    <action managerName="itmsFilesManager" methodName="initAllSqlFiles" parameter=""/>
+                </actions>
+                <forwards/>
+            </tableCommit>
+            <tablePopup id="initServiceFile" title="initServiceFile" process="itmsFilesProcess.initServiceFile" enableType="none" containId="false" pageId="editInitServiceFilePage">
+                <enableExpression/>
+            </tablePopup>
+        </process>
+    </main>
+    <detail/>
+</page>

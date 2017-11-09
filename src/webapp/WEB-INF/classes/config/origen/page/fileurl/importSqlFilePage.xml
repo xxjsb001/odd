@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pages>
+    <editPage id="importSqlFilePage" title="importSqlFilePage" entityClass="com.vtradex.wms.server.model.itms.ItmsSqlExecute" onClose="refreshParent" width="1000">
+        <workflow/>
+        <initListeners/>
+        <inputUIs>
+        	<hidden id="sqlfile.id" title="sqlfile.id" reserve="false"/>
+        	<file id="sqlfile.filename" title="mis.supCode" row="1" col="1" span="1" readOnly="false" required="true" reserve="true" forceOverride="true" focusUI="true" inVisible="false" showImage="false" fileSize="22577152">
+                <visibleExpression/>
+                <hql/>
+                <eventListeners/>
+            </file>
+            <text id="location.description" title="location.description" row="2" col="1" span="2" width="302" readOnly="true" required="false" reserve="false" forceOverride="true" focusUI="false" inVisible="false" trimSpace="true" 
+            	defaultValue="必须为.sql,加密文件必须解密后上传">
+                <visibleExpression/>
+                <hql/>
+                <eventListeners/>
+            </text>
+        	<remote id="sqlfile.dir.id" title="dir.dirName" row="3" col="1" span="1" readOnly="false" required="true" reserve="false" forceOverride="false" focusUI="false" inVisible="false" editModel="uneditable" multiple="false" manualEditable="true" displayColumn="2" percentSignPosition="both" displayedTableHead="序号,名称,频率,备注">
+                <visibleExpression/>
+                <hql><![CDATA[SELECT dir.id,
+dir.dirName,
+dir.repeatTimes,
+dir.description 
+ FROM ItmsSqlDir dir 
+ WHERE 1=1 and dir.status = 'ENABLED'
+ AND dir.warehouse = #{SESSION_WAREHOUSE}
+ and (dir.dirName like :param)
+ ORDER BY dir.id
+ ]]></hql>
+                <eventListeners>
+                </eventListeners>
+            </remote>
+        	
+            <checkbox id="sqlfile.isDoScheduler" title="sqlfile.isDoScheduler" row="4" col="1" span="1" readOnly="false" required="false" reserve="false" forceOverride="true" focusUI="true" inVisible="false">
+				<visibleExpression/>
+				<hql/>
+				<eventListeners>
+					<eventListener id="sqlfile.schedulerTime" index="1" refreshUI="true"/>
+				</eventListeners>
+			</checkbox>
+			<list id="sqlfile.schedulerTime" title="sqlfile.schedulerTime" row="5" col="1" span="1" readOnly="false" required="true" reserve="false" forceOverride="true" forceSpace="false" multiple="false" inVisible="false" enumType="ScheduleTime">
+                <visibleExpression><![CDATA[${sqlfile.isDoScheduler}=='true' ]]></visibleExpression>
+                <hql><![CDATA[SELECT 
+ enumerate.enumValue,
+ enumerate.enumValue From Enumerate enumerate 
+ where enumerate.enumType = 'ScheduleTime'
+ order by enumerate.id]]></hql>
+                <eventListeners>
+                </eventListeners>
+            </list>
+            <text id="sqlfile.repeatTimes" title="sqlfile.repeatTimes" row="5" col="1" span="1" readOnly="false" required="true" reserve="false" forceOverride="true" focusUI="false" inVisible="false" validator="positiveIntegerRequired" trimSpace="true">
+                <visibleExpression><![CDATA[${sqlfile.isDoScheduler}=='false' ]]></visibleExpression>
+                <hql/>
+                <eventListeners/>
+            </text>
+            <textArea id="sqlfile.description" title="mis.note" span="2" readOnly="false" required="false" reserve="false" forceOverride="true" focusUI="false" inVisible="false" rows="3" cols="40">
+                <visibleExpression/>
+                <hql/>
+                <eventListeners/>
+            </textArea>
+        </inputUIs>
+    </editPage>
+</pages>

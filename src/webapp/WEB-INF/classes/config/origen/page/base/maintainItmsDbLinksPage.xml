@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pages>
+    <maintainPage id="maintainItmsDbLinksPage" title="maintainItmsDbLinksPage" autoQuery="true" entityClass="com.vtradex.wms.server.model.itms.ItmsDbLinks">
+        <workflow/>
+        <datasource><![CDATA[SELECT dblink.id,
+sid.name,
+dblink.owner,
+dblink.dbLilnk,
+dblink.userName,
+dblink.host,
+dblink.passWord,
+dblink.description,
+dblink.updateInfo.createdTime,
+dblink.updateInfo.creator,
+dblink.updateInfo.updateTime,
+dblink.updateInfo.lastOperator
+ FROM ItmsDbLinks dblink
+ left join dblink.sid sid
+ WHERE 1=1
+ AND sid.warehouse = #{SESSION_WAREHOUSE} 
+ ORDER BY dblink.id]]></datasource>
+         <columns>
+            <column id="dblink.id" title="dblink.id" visible="false" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="long"/>
+            <column id="sid.name" title="location.warehouseArea.name" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="string"/>
+            <column id="dblink.owner" title="dblink.owner" visible="true" sortable="true" horizonAlign="center" width="60" verticalAlign="middle" dataType="string"/>
+            <column id="dblink.dbLilnk" title="dblink.dbLilnk" visible="true" sortable="true" horizonAlign="left" verticalAlign="middle" dataType="string"/>
+            <column id="dblink.userName" title="dblink.userName" visible="true" sortable="true" horizonAlign="left" verticalAlign="middle" dataType="string"/>
+        	<column id="dblink.host" title="dblink.host" visible="true" sortable="true" horizonAlign="left" width="180" verticalAlign="middle" dataType="string"/>
+        	<column id="dblink.passWord" title="dblink.passWord" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="double"/>
+        	<column id="dblink.description" title="location.description" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="string"/>
+        	<column id="dblink.updateInfo.createdTime" title="moveDoc.updateInfo.createdTime" visible="false" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="date"/>
+			<column id="dblink.updateInfo.creator" title="moveDoc.updateInfo.creator" visible="false" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="string"/>
+            <column id="dblink.updateInfo.updateTime" title="workDoc.updateTime" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="date"/>
+			<column id="dblink.updateInfo.lastOperator" title="moveDoc.updateInfo.lastOperator" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="string"/>
+        </columns>
+    </maintainPage>
+</pages>

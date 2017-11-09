@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pages>
+    <maintainPage id="maintainJacProjectUrlPage" title="maintainJacProjectUrlPage" autoQuery="true" entityClass="com.vtradex.wms.server.model.itms.JacProjectUrl" displayRowCount="100">
+        <workflow/>
+        <datasource><![CDATA[SELECT url.id,
+url.synonymName,
+url.url,
+url.sortName,
+url.description,
+url.updateInfo.createdTime,
+url.updateInfo.creator,
+url.updateInfo.updateTime,
+url.updateInfo.lastOperator
+ FROM JacProjectUrl url 
+ WHERE 1=1
+ AND url.updateInfo.creator = #{SESSION_USER_NAME}
+ ORDER BY url.synonymName,url.id]]></datasource>
+        <columns>
+            <column id="url.id" title="url.id" visible="false" sortable="false" horizonAlign="center" verticalAlign="middle" dataType="long"/>
+            <column id="url.synonymName" title="wk.synonymName" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" width="100" dataType="enum" format="enumFormat" formatParam="ItmpDeptNumber"/>
+            <column id="url.url" title="url.url" visible="true" sortable="true" horizonAlign="left" verticalAlign="middle" dataType="string" width="200" format="urlFormartter"/>
+            <column id="url.sortName" title="url.sortName" visible="true" sortable="true" horizonAlign="left" verticalAlign="middle" dataType="string"/>
+            <column id="url.description" title="url.description" visible="true" sortable="true" horizonAlign="left" verticalAlign="middle" dataType="string"/>
+            <column id="url.updateInfo.createdTime" title="moveDoc.updateInfo.createdTime" visible="false" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="date"/>
+			<column id="url.updateInfo.creator" title="moveDoc.updateInfo.creator" visible="false" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="string"/>
+            <column id="url.updateInfo.updateTime" title="workDoc.updateTime" visible="false" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="date"/>
+			<column id="url.updateInfo.lastOperator" title="moveDoc.updateInfo.lastOperator" visible="false" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="string"/>
+		</columns>
+    </maintainPage>
+</pages>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<page id="modifyItmsWebArgumentPage">
+	<main>
+        <process id="normalEditProcess">
+            <formCommit id="save" title="save" process="normalEditProcess.new" enableType="none" download="false" visibleType="new">
+                <enableExpression/>
+                <mappings/>
+                <actions/>
+                <forwards>
+                    <forward name="refreshParent" newEnabled="true" editEnabled="true"/>
+                </forwards>
+            </formCommit>
+            <formCommit id="edit" title="edit" process="normalEditProcess.edit" enableType="none" download="false" visibleType="edit">
+                <enableExpression/>
+                <mappings/>
+                <actions/>
+                <forwards>
+                    <forward name="closeWindow" newEnabled="true" editEnabled="true"/>
+                </forwards>
+            </formCommit>
+        </process>
+    </main>
+    <detail>
+    	<process id="normalProcess">
+	        <tablePopup id="new" title="new" process="normalProcess.new" enableType="none" containId="false" pageId="editItmsWebArgumentPage">
+	            <enableExpression><![CDATA[${methods.id} != '']]></enableExpression>
+	        </tablePopup>
+	        <tablePopup id="edit" title="edit" process="normalProcess.edit" enableType="single" containId="true" pageId="editItmsWebArgumentPage">
+	            <enableExpression><![CDATA[${methods.id} != '']]></enableExpression>
+	        </tablePopup>
+	        <tableCommit id="delete" title="delete" process="normalProcess.delete" enableType="multi" multiMapping="false" download="false" closeTransactional="false">
+	            <enableExpression/>
+	            <mappings/>
+	           <actions/>
+	            <forwards/>
+	        </tableCommit>
+	    </process>
+    </detail>
+</page>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pages>
+    <maintainPage id="maintainItmsUsersPage" title="maintainItmsUsersPage" autoQuery="true" entityClass="com.vtradex.wms.server.model.warehouse.ItmsUsers">
+        <workflow/>
+        <datasource><![CDATA[SELECT wk.id,
+wk.location.warehouseArea.id,
+wk.code,
+wk.name,
+wk.status,
+wk.userLeavel,
+wk.location.code,
+wk.synonymName,
+sid.name,
+wk.description,
+wk.location.description,
+wk.accountStatus,
+wk.lockDate,
+wk.expiryDate,
+wk.updateInfo.updateTime,
+wk.updateInfo.lastOperator 
+ FROM ItmsUsers wk 
+ LEFT JOIN wk.location tablespaces
+ LEFT JOIN wk.location.warehouseArea sid
+ LEFT JOIN wk.location.warehouseArea.warehouse warehouse
+ WHERE 1=1
+ AND sid.warehouse = #{SESSION_WAREHOUSE} 
+ AND wk.type = 'PERSON' 
+ ORDER BY wk.code
+ ]]></datasource>
+        <columns>
+            <column id="wk.id" title="wk.id" visible="false" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="long"/>
+            <column id="wk.location.warehouseArea.id" title="sid.id" visible="false" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="long"/>
+            <column id="wk.code" title="wk.code" visible="true" sortable="true" horizonAlign="left" verticalAlign="middle" dataType="string"/>
+            <column id="wk.name" title="wk.name" visible="true" sortable="true" horizonAlign="left" verticalAlign="middle" dataType="string"/>
+            <column id="wk.status" title="location.status" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="enum" format="enumFormat" formatParam="BaseStatus"/>
+            <column id="wk.userLeavel" title="wk.userLeavel" visible="true" sortable="true" horizonAlign="left" verticalAlign="middle" dataType="enum" format="enumFormat" formatParam="UserLeavel"/>
+            <column id="wk.location.code" title="table.tablespaceName" visible="true" sortable="true" horizonAlign="left" verticalAlign="middle" dataType="string"/>
+            <column id="wk.synonymName" title="wk.synonymName" visible="true" sortable="true" horizonAlign="left" verticalAlign="middle" dataType="enum" format="enumFormat" formatParam="ItmpDeptNumber"/>
+            <column id="sid.name" title="warehouseArea.name" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="string"/>
+            <column id="wk.description" title="location.description" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="string"/>
+            <column id="wk.location.description" title="wk.location.description" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="string"/>
+            <column id="wk.accountStatus" title="wk.accountStatus" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="enum" format="enumFormat" formatParam="WmsCountLockType"/>
+            <column id="wk.lockDate" title="wk.lockDate" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="datetime"/>
+            <column id="wk.expiryDate" title="wk.expiryDate" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="datetime"/>
+            <column id="wk.updateInfo.updateTime" title="workDoc.updateTime" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="datetime"/>
+            <column id="wk.updateInfo.lastOperator" title="moveDoc.updateInfo.lastOperator" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="string"/>
+        </columns>
+    </maintainPage>
+</pages>

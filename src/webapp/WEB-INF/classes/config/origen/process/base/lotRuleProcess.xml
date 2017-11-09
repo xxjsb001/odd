@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<process id="lotRuleProcess" control="status">
+
+	<state id="ENABLED" title="生效"/>
+
+	<state id="DISABLED" title="失效"/>
+
+	<task id="new" title="更新表信息">
+	</task>
+
+	<task id="edit" title="更新账号信息">
+	</task>
+
+	<task id="disable" title="表空间信息更新">
+	</task>
+
+	<task id="enable" title="恢复">
+		<from id="DISABLED" type="state"/>
+		<to id="ENABLED" type="state"/>
+	</task>
+
+</process>

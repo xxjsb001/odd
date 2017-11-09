@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pages>
+	<modifyDetailPage id="modifyItmsUsersPage" title="modifyItmsUsersPage" entityClass="com.vtradex.wms.server.model.warehouse.ItmsUsers" onClose="refreshParent" width="450" height="500">
+        <initListeners/>
+	        <modify>
+           <inputUIs>
+            <hidden id="worker.id" title="worker.id" reserve="false"/>
+            <hidden id="wk.location.warehouseArea.id" title="wk.location.warehouseArea.id" reserve="false"/>
+            <text id="worker.code" title="worker.code" row="1" col="1" span="1" readOnly="false" required="true" reserve="false" forceOverride="true" focusUI="false" inVisible="false" editModel="editable" trimSpace="true">
+                <visibleExpression/>
+                <hql/>
+                <eventListeners/>
+            </text>
+            <text id="worker.name" title="worker.name" row="1" col="2" span="1" readOnly="false" required="true" reserve="false" forceOverride="true" focusUI="false" inVisible="false" trimSpace="true">
+                <visibleExpression/>
+                <hql/>
+                <eventListeners/>
+            </text>
+            <remote id="worker.location.id" title="worker.location.id" row="2" col="1" span="1" readOnly="false" required="true" reserve="false" forceOverride="false" focusUI="false" inVisible="false" multiple="false" manualEditable="true" displayColumn="2" percentSignPosition="both" displayedTableHead="序号,编码,SID,备注">
+                <visibleExpression/>
+                <hql><![CDATA[select u.id, u.code,u.warehouseArea.name,u.description from ItmsTablespaces u
+ where 1=1 and u.status = 'ENABLED' and u.warehouseArea.warehouse = #{SESSION_WAREHOUSE}
+ and u.code not in ('SYSAUX','SYSTEM','UNDOTBS1','USERS')
+ and (u.code like :param or u.description like :param)]]></hql>
+                <eventListeners/>
+            </remote>
+            <list id="worker.synonymName" title="wk.synonymName" row="2" col="2" span="1" width="120" readOnly="false" required="true" reserve="false" forceOverride="true" forceSpace="false" multiple="false" inVisible="false" enumType="ItmpDeptNumber">
+                <visibleExpression/>
+                <hql><![CDATA[SELECT 
+ enumerate.enumValue,
+ enumerate.enumValue From Enumerate enumerate 
+ where enumerate.enumType = 'ItmpDeptNumber' and enumerate.enumValue not in ('-','project','other')
+ order by enumerate.id]]></hql>
+                <eventListeners>
+                </eventListeners>
+            </list>
+            <list id="worker.userLeavel" title="wk.userLeavel" row="3" col="1" span="1" width="120" readOnly="false" required="true" reserve="false" forceOverride="true" forceSpace="false" multiple="false" inVisible="false" enumType="UserLeavel">
+                <visibleExpression/>
+                <hql><![CDATA[SELECT 
+ enumerate.enumValue,
+ enumerate.enumValue From Enumerate enumerate 
+ where enumerate.enumType = 'UserLeavel' 
+ order by enumerate.id]]></hql>
+                <eventListeners>
+                </eventListeners>
+            </list>
+            <textArea id="worker.description" title="worker.description" row="4" col="1" span="2" readOnly="false" required="false" reserve="false" forceOverride="true" focusUI="false" inVisible="false" rows="3" cols="40">
+                <visibleExpression/>
+                <hql/>
+                <eventListeners/>
+            </textArea>
+            <text id="worker.type" title="worker.type" row="5" col="1" span="1" defaultValue="PERSON" readOnly="false" required="false" reserve="false" forceOverride="true" focusUI="false" inVisible="true" trimSpace="true">
+                <visibleExpression/>
+                <hql/>
+                <eventListeners/>
+            </text>
+        </inputUIs>
+        </modify>
+        <detail entityClass="com.vtradex.wms.server.model.middle.ItmsAuthority">
+            <datasource><![CDATA[SELECT mce.id,
+mce.sender,
+table.code,
+mce.description
+ FROM ItmsAuthority mce
+ LEFT JOIN mce.worker worker
+ LEFT JOIN mce.table table
+ WHERE 1=1
+ and mce.worker.id = {worker.id}
+ ORDER BY mce.id
+]]></datasource>
+	        <columns>
+	           	<column id="mce.id" title="mce.id" visible="false" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="long"/>
+	            <column id="mce.sender" title="mce.sender" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="enum" format="enumFormat" formatParam="TypeOfBill"/>
+	            <column id="table.code" title="table.tableName" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="string"/>
+	            <column id="mce.description" title="billType.description" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="string"/>
+	        </columns>
+        </detail>
+    </modifyDetailPage>
+</pages>

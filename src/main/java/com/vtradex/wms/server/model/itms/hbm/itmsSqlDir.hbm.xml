@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.vtradex.wms.server.model.itms.ItmsSqlDir" table="Itms_Sql_Dir" dynamic-update="true">
+        <id name="id" column="ID" type="long">
+            <generator class="native">
+                <param name="sequence">iseq_ItmsSqlDir</param>
+                <param name="parameters">START WITH 1</param>
+            </generator>
+        </id>
+        <discriminator column="DISCRIMINATOR" type="string"/>
+		<version name="version" column="VERSION" type="long"/>
+		
+		<property name="dirName" column="DIR_NAME" type="string" length="100"  not-null="true" unique-key="UK_ITMSSQLDIR"/>
+        <property name="description" type="string">
+            <column name="DESCRIPTION" length="255"/>
+        </property>
+        <property name="status" type="string">
+            <column name="STATUS" length="50"/>
+        </property>
+        <many-to-one name="warehouse" class="com.vtradex.wms.server.model.warehouse.ItmsWarehouse">
+			<column name="WAREHOUSE_ID" not-null="true" unique-key="UK_ITMSSQLDIR"/>
+		</many-to-one>
+		<property name="repeatTimes" column="REPEAT_TIMES" type="integer" not-null="true"/>
+		<property name="dataSource" column="DATA_SOURCE" type="string" length="100"  not-null="true"/>
+		<component name="updateInfo" class="com.vtradex.thorn.server.model.UpdateInfo">
+			<property name="creatorId" type="long" column="CREATOR_ID"/>
+			<property name="creator" type="string" length="50" column="CREATOR"/>
+			<property name="createdTime" type="timestamp" column="CREATED_TIME"/>
+			<property name="lastOperatorId" type="long" column="LAST_OPERATOR_ID"/>
+			<property name="lastOperator" type="string" length="50" column="LAST_OPERATOR"/>
+			<property name="updateTime" type="timestamp" column="UPDATE_TIME"/>
+		</component>
+        		
+	</class>
+</hibernate-mapping>

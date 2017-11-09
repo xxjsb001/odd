@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pages>
+    <editPage id="editWmsLocationUpdatePage" title="editWmsLocationUpdatePage" entityClass="com.vtradex.wms.server.model.warehouse.ItmsTablespaces" onClose="refreshParent">
+        <workflow/>
+        <initListeners>
+		</initListeners>
+        <inputUIs>
+            <hidden id="location.id" title="location.id" reserve="false"/>
+			<list id="location.warehouseArea.id" title="location.warehouseArea.id" row="1" col="1" span="1" width="118" readOnly="false" required="true" reserve="false" forceOverride="true" forceSpace="false" multiple="false" inVisible="false">
+                <visibleExpression/>
+                <hql><![CDATA[SELECT sid.id,
+sid.name
+FROM ItmsSid sid WHERE sid.status='ENABLED' 
+AND sid.warehouse = #{SESSION_WAREHOUSE}]]></hql>
+                <eventListeners/>
+            </list>
+            <textArea id="location.description" title="location.description" row="3" col="1" span="2" readOnly="false" required="false" reserve="false" forceOverride="true" focusUI="false" inVisible="false" rows="3" cols="40">
+                <visibleExpression/>
+                <hql/>
+                <eventListeners/>
+            </textArea>
+        </inputUIs>
+    </editPage>
+</pages>

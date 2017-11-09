@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<page id="maintainWmsWorkerRuleDeletePage">
+    <main>
+        <process id="itmsUserProcess">
+            <tableCommit id="deletePower" title="deletePower" process="itmsUserProcess.deletePower" enableType="multi" download="false" confirmMessage="confirm.wmsLocationBatch">
+                <enableExpression/>
+                <mappings>
+                    <mapping id="worker.id" className="long">
+                        <entries/>
+                    </mapping>
+                </mappings>
+                <actions>
+                    <action managerName="itmsOrganizationManager" methodName="deleteRuleUpdate" parameter="worker.id,obj"/>
+                </actions>
+                <forwards/>
+            </tableCommit>
+        </process>
+    </main>
+    <detail/>
+</page>

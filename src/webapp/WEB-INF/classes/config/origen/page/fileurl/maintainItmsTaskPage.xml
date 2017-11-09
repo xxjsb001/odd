@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pages>
+    <maintainPage id="maintainItmsTaskPage" title="maintainItmsTaskPage" autoQuery="true" entityClass="com.vtradex.wms.server.model.itms.ItmsTask">
+        <workflow/>
+        <datasource><![CDATA[SELECT task.id,
+task.type,
+task.extend1,
+task.extend2,
+task.extend3,
+task.subscriber,
+task.messageId,
+task.createdTime,
+task.startTime,
+task.endTime,
+task.status,
+task.status AS statusView,
+task.repeatCount 
+ FROM ItmsTask task
+WHERE 1=1 and task.subscriber in ('ediExecuteSql.executeSql','webExecuteData.sendJson')
+ORDER BY task.id DESC ]]></datasource>
+        <columns>
+            <column id="task.id" title="task.id" visible="false" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="long"/>
+            <column id="task.type" title="task.type" visible="true" sortable="true" horizonAlign="left" verticalAlign="middle" dataType="string"/>
+            <column id="task.extend1" title="location.dbfPath" visible="false" sortable="true" horizonAlign="left" verticalAlign="middle" dataType="string"/>
+            <column id="task.extend2" title="task.extend2" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="string" width="200" format="alterValueFormatter"/>
+            <column id="task.extend3" title="task.extend3" visible="false" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="string"/>
+            <column id="task.subscriber" title="task.subscriber" visible="false" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="string"/>
+            <column id="task.messageId" title="task.messageId" visible="true" sortable="true" width="80" horizonAlign="center" verticalAlign="middle" dataType="long"/>
+            <column id="task.createdTime" title="createTime" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="date"/>
+            <column id="task.startTime" title="task.startTime" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="date"/>
+            <column id="task.endTime" title="task.endTime" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="date"/>
+            <column id="task.statusView" title="task.status" visible="true" sortable="true" width="80" horizonAlign="center" verticalAlign="middle" dataType="enum" format="taskStatusFormatter" formatParam="TaskStatus"/>
+            <column id="task.status" title="task.status" visible="false" sortable="true" width="60" horizonAlign="center" verticalAlign="middle"/>
+            <column id="task.repeatCount" title="task.repeatCount" visible="true" sortable="true" width="80" horizonAlign="center" verticalAlign="middle" dataType="integer"/>
+        </columns>
+    </maintainPage>
+</pages>

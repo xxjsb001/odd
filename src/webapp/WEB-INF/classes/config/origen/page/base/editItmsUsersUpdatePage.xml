@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pages>
+    <editPage id="editItmsUsersUpdatePage" title="editItmsUsersUpdatePage" entityClass="com.vtradex.wms.server.model.warehouse.ItmsUsers" onClose="refreshParent">
+        <workflow/>
+        <initListeners/>
+        <inputUIs>
+            <hidden id="worker.id" title="worker.id" reserve="false"/>
+            <remote id="worker.location.id" title="worker.location.id" row="2" col="1" span="1" readOnly="false" required="true" reserve="false" forceOverride="false" focusUI="false" inVisible="false" multiple="false" manualEditable="true" displayColumn="2" percentSignPosition="both" displayedTableHead="序号,编码,SID,服务,备注">
+                <visibleExpression/>
+                <hql><![CDATA[select u.id, u.code,u.warehouseArea.name,u.warehouseArea.warehouse.name,u.description from ItmsTablespaces u
+ where 1=1 AND u.warehouseArea.warehouse.name = #{SESSION_WAREHOUSE_NAME} and u.status = 'ENABLED'
+ and u.code not in ('SYSAUX','SYSTEM','UNDOTBS1','USERS')
+ and (u.code like :param or u.description like :param)]]></hql>
+                <eventListeners/>
+            </remote>
+            <textArea id="worker.description" title="worker.description" row="3" col="1" span="2" readOnly="false" required="false" reserve="false" forceOverride="true" focusUI="false" inVisible="false" rows="3" cols="40">
+                <visibleExpression/>
+                <hql/>
+                <eventListeners/>
+            </textArea>
+            <text id="worker.type" title="worker.type" row="4" col="1" span="1" defaultValue="PERSON" readOnly="false" required="false" reserve="false" forceOverride="true" focusUI="false" inVisible="true" trimSpace="true">
+                <visibleExpression/>
+                <hql/>
+                <eventListeners/>
+            </text>
+        </inputUIs>
+    </editPage>
+</pages>

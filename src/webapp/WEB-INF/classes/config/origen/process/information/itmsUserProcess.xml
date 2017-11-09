@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<process id="itmsUserProcess" control="status">
+
+	<task id="ionization" title="游离表">
+	</task>
+
+	<task id="correct" title="纠正">
+	</task>
+
+	<task id="insertPower" title="权限-增">
+	</task>
+
+	<task id="deletePower" title="权限-删">
+	</task>
+
+	<task id="updatePower" title="权限-改">
+	</task>
+
+	<task id="selectPower" title="权限-查">
+	</task>
+
+	<task id="addUser" title="添加">
+	</task>
+
+	<task id="removeUser" title="移除">
+	</task>
+
+</process>

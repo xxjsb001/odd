@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pages>
+    <editPage id="editItmsMyDocPage" title="editItmsMyDocPage" entityClass="com.vtradex.wms.server.model.inventory.ItmsFiles" onClose="refreshParent" width="800">
+        <workflow/>
+        <initListeners/>
+        <inputUIs>
+        	<hidden id="mis.id" title="mis.id" reserve="false"/>
+            <list id="mis.type" title="mis.type" row="3" col="1" span="1" readOnly="false" required="true" reserve="false" forceOverride="true" forceSpace="false" multiple="false" inVisible="false" enumType="ItmsFileType">
+                <visibleExpression/>
+                <hql><![CDATA[SELECT 
+ enumerate.enumValue,
+ enumerate.enumValue From Enumerate enumerate 
+ where enumerate.enumType = 'ItmsFileType'
+ order by enumerate.id]]></hql>
+                <eventListeners>
+                </eventListeners>
+            </list>
+            <textArea id="mis.note" title="mis.note" span="1" readOnly="false" required="false" reserve="false" forceOverride="true" focusUI="false" inVisible="false">
+                <visibleExpression/>
+                <hql/>
+                <eventListeners/>
+            </textArea>
+        </inputUIs>
+    </editPage>
+</pages>

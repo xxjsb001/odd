@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pages>
+    <maintainPage id="maintainItmsSynonymsPage" title="maintainItmsSynonymsPage" autoQuery="true" entityClass="com.vtradex.wms.server.model.itms.ItmsSynonyms" displayRowCount="100">
+        <workflow/>
+        <datasource><![CDATA[SELECT syno.id,
+syno.owner,
+syno.synonymName,
+syno.tableName,
+syno.tableOwner,
+itmsSid.name
+ FROM ItmsSynonyms syno
+ LEFT JOIN syno.itmsSid itmsSid
+ LEFT JOIN syno.warehouse warehouse
+ WHERE 1=1 AND syno.warehouse = #{SESSION_WAREHOUSE}
+ ORDER BY syno.id]]></datasource>
+        <columns>
+            <column id="syno.id" title="syno.id" visible="false" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="long"/>
+            <column id="syno.owner" title="dblink.owner" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="string"/>
+            <column id="syno.synonymName" title="mce.synonymName" visible="true" sortable="true" horizonAlign="left" width="230" verticalAlign="middle" dataType="string"/>
+            <column id="syno.tableName" title="table.tableName" visible="true" sortable="true" horizonAlign="left" width="200" verticalAlign="middle" dataType="string"/>
+            <column id="syno.tableOwner" title="user.code" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="string"/>
+        	<column id="itmsSid.name" title="warehouseArea.name" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="string"/>
+        </columns>
+    </maintainPage>
+</pages>

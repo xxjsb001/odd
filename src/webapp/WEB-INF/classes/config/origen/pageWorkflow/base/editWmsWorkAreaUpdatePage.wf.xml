@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<page id="editWmsWorkAreaUpdatePage">
+    <main>
+        <process id="lotRuleProcess">
+            <formCommit id="save" title="save" process="lotRuleProcess.new" enableType="none" multiMapping="false" download="false" closeTransactional="false" visibleType="new">
+                <enableExpression/>
+                <mappings>
+                	<mapping id="workArea.user.id" className="long">
+                        <entries/>
+                    </mapping>
+                    <mapping id="workArea.description" className="string">
+                        <entries/>
+                    </mapping>
+                </mappings>
+                <actions>
+                    <action managerName="itmsLocationManager" methodName="updateWorkArea" parameter="workArea.user.id,workArea.description"/>
+                </actions>
+                <forwards>
+                    <forward name="refreshParent" newEnabled="true" editEnabled="true"/>
+                    <forward name="resetWindow" newEnabled="true" editEnabled="true"/>
+                </forwards>
+            </formCommit>
+        </process>
+    </main>
+    <detail/>
+</page>

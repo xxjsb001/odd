@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pages>
+    <maintainPage id="maintainWmsWarehouseAreaPage" title="maintainWmsWarehouseAreaPage" autoQuery="true" entityClass="com.vtradex.wms.server.model.warehouse.ItmsSid">
+        <workflow/>
+        <datasource><![CDATA[SELECT warehouseArea.id,
+warehouseArea.code,
+warehouseArea.name,
+warehouseArea.status,
+warehouseArea.sysPass,
+warehouseArea.description 
+ FROM ItmsSid warehouseArea
+ WHERE 1=1
+ AND warehouseArea.warehouse = #{SESSION_WAREHOUSE}
+ ORDER BY warehouseArea.code
+]]></datasource>
+        <columns>
+            <column id="warehouseArea.id" title="warehouseArea.id" visible="false" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="long"/>
+            <column id="warehouseArea.code" title="warehouseArea.code" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="string"/>
+            <column id="warehouseArea.name" title="warehouseArea.name" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="string"/>
+            <column id="warehouseArea.status" title="warehouseArea.status" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="enum" format="enumFormat" formatParam="BaseStatus"/>
+            <column id="warehouseArea.sysPass" title="warehouseArea.sysPass" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="string"/>
+            <column id="warehouseArea.description" title="warehouseArea.description" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="string"/>
+        </columns>
+    </maintainPage>
+</pages>

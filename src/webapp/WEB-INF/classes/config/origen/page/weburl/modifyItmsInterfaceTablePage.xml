@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pages>
+	<modifyDetailPage id="modifyItmsInterfaceTablePage" title="modifyItmsInterfaceTablePage" entityClass="com.vtradex.wms.server.model.webservice.ItmsInterfaceTable" onClose="refreshParent" width="450" height="500">
+        <initListeners/>
+	        <modify>
+           <inputUIs>
+            <hidden id="iTable.id" title="iTable.id"/>
+            <text id="iTable.extTableName" title="methods.extTableName" row="4" col="1" span="1" readOnly="false" required="true" reserve="false" forceOverride="true" focusUI="false" inVisible="false" trimSpace="true">
+                <visibleExpression/>
+                <hql/>
+                <eventListeners/>
+            </text>
+            <list id="iTable.dataSource" title="dir.dataSource" row="4" col="2" span="1" readOnly="false" required="true" reserve="false" forceOverride="true" forceSpace="false" multiple="false" inVisible="false" enumType="ItmsSqlTaskType">
+                <visibleExpression/>
+                <hql><![CDATA[SELECT 
+ enumerate.enumValue,
+ enumerate.enumValue From Enumerate enumerate 
+ where enumerate.enumType = 'ItmsSqlTaskType'
+ order by enumerate.id]]></hql>
+                <eventListeners>
+                </eventListeners>
+            </list>
+            <text id="iTable.description" title="warehouse.description" row="7" col="1" span="2" width="302" readOnly="false" required="false" reserve="false" forceOverride="true" focusUI="false" inVisible="false" trimSpace="true">
+                <visibleExpression/>
+                <hql/>
+                <eventListeners/>
+            </text>
+        </inputUIs>
+        </modify>
+        <detail entityClass="com.vtradex.wms.server.model.webservice.ItmsInterfaceColumn">
+            <datasource><![CDATA[SELECT columns.id,
+columns.jsonC,
+columns.jsonV
+ FROM ItmsInterfaceColumn columns
+ LEFT JOIN columns.interfaceTable interfaceTable
+ WHERE 1=1
+ and columns.interfaceTable.id = {iTable.id}
+ ORDER BY columns.id
+]]></datasource>
+	        <columns>
+	           	<column id="columns.id" title="columns.id" visible="false" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="long"/>
+	            <column id="columns.jsonC" title="columns.jsonC" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="string"/>
+	            <column id="columns.jsonV" title="columns.jsonV" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="string"/>
+	        </columns>
+        </detail>
+    </modifyDetailPage>
+</pages>

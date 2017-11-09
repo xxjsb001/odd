@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<process id="wmsInventoryExtendProcess" control="status">
+
+	<state id="ACTIVE" title="生效"/>
+
+	<state id="OPEN" title="打开"/>
+
+	<state id="FINISHED" title="完成"/>
+
+	<task id="new" title="新建">
+		<to id="OPEN" type="state"/>
+	</task>
+
+	<task id="edit" title="修改">
+		<from id="OPEN" type="state"/>
+	</task>
+
+	<task id="delete" title="删除">
+		<from id="OPEN" type="state"/>
+		<to id="NONE" type="none"/>
+	</task>
+
+	<task id="confirmBySerialNo" title="选择截止时间点">
+	</task>
+
+	<task id="confirmByCarton" title="生效">
+		<from id="OPEN" type="state"/>
+	</task>
+
+	<task id="confirmByPallet" title="完成">
+		<from id="ACTIVE" type="state"/>
+		<to id="FINISHED" type="state"/>
+	</task>
+
+	<task id="view" title="查看明细">
+	</task>
+
+</process>

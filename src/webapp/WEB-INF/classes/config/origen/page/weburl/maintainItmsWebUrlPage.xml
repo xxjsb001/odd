@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pages>
+    <maintainPage id="maintainItmsWebUrlPage" title="maintainItmsWebUrlPage" autoQuery="true" entityClass="com.vtradex.wms.server.model.webservice.ItmsWebUrl">
+        <workflow/>
+        <datasource><![CDATA[SELECT url.id,
+url.company,
+url.url,
+url.appKey,
+url.appSecret,
+url.description,
+url.updateInfo.createdTime,
+url.updateInfo.creator,
+url.updateInfo.updateTime,
+url.updateInfo.lastOperator 
+ FROM ItmsWebUrl url 
+ WHERE 1=1
+ ORDER BY url.id]]></datasource>
+        <columns>
+            <column id="url.id" title="url.id" visible="false" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="long"/>
+            <column id="url.company" title="url.company" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="string"/>
+            <column id="url.url" title="URL" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="integer"/>
+            <column id="url.appKey" title="wk.code" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="string"/>
+            <column id="url.appSecret" title="wk.name" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="string"/>
+            <column id="url.description" title="warehouse.description" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="string"/>
+        	<column id="url.updateInfo.createdTime" title="moveDoc.updateInfo.createdTime" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="date"/>
+			<column id="url.updateInfo.creator" title="moveDoc.updateInfo.creator" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="string"/>
+            <column id="url.updateInfo.updateTime" title="workDoc.updateTime" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="date"/>
+			<column id="url.updateInfo.lastOperator" title="moveDoc.updateInfo.lastOperator" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="string"/>
+        </columns>
+    </maintainPage>
+</pages>

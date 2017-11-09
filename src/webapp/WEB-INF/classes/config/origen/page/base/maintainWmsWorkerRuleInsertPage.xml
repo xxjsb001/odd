@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pages>
+    <maintainPage id="maintainWmsWorkerRuleInsertPage" title="maintainWmsWorkerRulePage" autoQuery="true" entityClass="com.vtradex.wms.server.model.warehouse.ItmsTable" onClose="refreshParent" width="800" height="500" displayRowCount="100">
+        <workflow/>
+        <datasource><![CDATA[SELECT table.id,
+user.code,
+table.code,
+table.synonymName,
+table.type,
+table.numRows,
+table.description
+ FROM ItmsTable table
+ LEFT JOIN table.user user
+ LEFT JOIN table.user.location location
+ LEFT JOIN table.user.location.warehouseArea warehouseArea
+ LEFT JOIN table.user.location.warehouseArea.warehouse warehouse
+ WHERE 1=1 AND table.status = 'ENABLED' and table.synonymName is not null
+ AND warehouseArea.warehouse = #{SESSION_WAREHOUSE} 
+ AND user.location.warehouseArea.id = {wk.location.warehouseArea.id}
+ and not exists(select 1 from ItmsAuthority mce where 1=1 
+ 	and mce.worker.id = {worker.id} and mce.sender = 'insert'
+ 	and mce.table.code = table.code and mce.table.user.code = user.code) 
+ ORDER BY table.id DESC]]></datasource>
+        <columns>
+            <column id="table.id" title="table.id" visible="false" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="long"/>
+            <column id="user.code" title="user.code" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="string"/>
+            <column id="table.code" title="table.tableName" visible="true" sortable="true" horizonAlign="left" verticalAlign="middle" dataType="string"/>
+            <column id="table.synonymName" title="mce.synonymName" visible="true" sortable="true" horizonAlign="left" width="200" verticalAlign="middle" dataType="string"/>
+            <column id="table.type" title="workArea.type" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="enum" format="enumFormat" formatParam="CheckInventoryType"/>
+            <column id="table.numRows" title="workArea.numRows" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="integer"/>
+            <column id="table.description" title="workArea.description" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="string"/>
+        </columns>
+    </maintainPage>
+</pages>

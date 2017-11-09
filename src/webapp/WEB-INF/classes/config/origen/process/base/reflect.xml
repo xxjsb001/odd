@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<process id="reflect" control="status">
+
+	<task id="itmsTaskMethod" title="调用itmsTask">
+	</task>
+
+	<task id="invokeMethod" title="无参方法调用">
+	</task>
+
+</process>

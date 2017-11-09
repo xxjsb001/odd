@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<process id="itmsDocPorcess" control="status">
+
+	<task id="pShare" title="公共分享">
+	</task>
+
+	<task id="unShare" title="取消分享">
+	</task>
+
+	<task id="sendMail" title="邮件发送">
+	</task>
+
+</process>

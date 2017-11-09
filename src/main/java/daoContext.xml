@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC
+        "-//SPRING//DTD BEAN//EN"
+        "http://www.springframework.org/dtd/spring-beans.dtd">
+
+	<!--
+		Copyright (c) 2001-2005 vTradEx Information Technology Co.,Ltd. All Rights Reserved. This software is the confidential
+		and proprietary information of vTradEx Information Technology Co.,Ltd. ("Confidential Information"). You shall not
+		disclose such Confidential Information and shall use it only in accordance with the terms of the license agreement you
+		entered into with vTradEx. VTRADEX MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE SOFTWARE,
+		EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
+		PARTICULAR PURPOSE, OR NON-INFRINGEMENT. VTRADEX SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT
+		OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS DERIVATIVES.
+	-->
+	<!-- $Id: daoContext.xml,v 1.9 2017/05/05 08:47:42 yongcheng.min Exp $ -->
+
+<beans>
+	
+	<bean id="oracleLobHandler" class="org.springframework.jdbc.support.lob.OracleLobHandler" lazy-init="true">
+		<property name="nativeJdbcExtractor" ref="nativeJdbcExtractor" />
+	</bean>
+
+	<bean id="nativeJdbcExtractor" class="org.springframework.jdbc.support.nativejdbc.CommonsDbcpNativeJdbcExtractor"
+		lazy-init="true" />
+
+	<!--warehouse-->
+	<bean id="itmsWarehouseHibernateMappingResource" class="com.vtradex.thorn.server.dao.hibernate.HibernateMappingResource">
+        <constructor-arg>
+            <value>com/vtradex/wms/server/model/warehouse/hbm/itmsWarehouse.hbm.xml</value>
+        </constructor-arg>
+    </bean>
+	
+	<bean id="itmsSidHibernateMappingResource" class="com.vtradex.thorn.server.dao.hibernate.HibernateMappingResource">
+        <constructor-arg>
+            <value>com/vtradex/wms/server/model/warehouse/hbm/itmsSid.hbm.xml</value>
+        </constructor-arg>
+    </bean>
+	
+		<bean id="itmsTablespacesHibernateMappingResource" class="com.vtradex.thorn.server.dao.hibernate.HibernateMappingResource">
+        <constructor-arg>
+            <value>com/vtradex/wms/server/model/warehouse/hbm/itmsTablespaces.hbm.xml</value>
+        </constructor-arg>
+    </bean>
+	
+	    <bean id="itmsUsersHibernateMappingResource" class="com.vtradex.thorn.server.dao.hibernate.HibernateMappingResource">
+        <constructor-arg>
+            <value>com/vtradex/wms/server/model/warehouse/hbm/itmsUsers.hbm.xml</value>
+        </constructor-arg>
+    </bean>
+	
+	    <bean id="itmsTableHibernateMappingResource" class="com.vtradex.thorn.server.dao.hibernate.HibernateMappingResource">
+        <constructor-arg>
+            <value>com/vtradex/wms/server/model/warehouse/hbm/itmsTable.hbm.xml</value>
+        </constructor-arg>
+    </bean>
+	
+	    <bean id="itmsAuthorityHibernateMappingResource" class="com.vtradex.thorn.server.dao.hibernate.HibernateMappingResource">
+        <constructor-arg>
+            <value>com/vtradex/wms/server/model/middle/hbm/itmsAuthority.hbm.xml</value>
+        </constructor-arg>
+    </bean>
+	
+	    <bean id="itmsFilesHibernateMappingResource" class="com.vtradex.thorn.server.dao.hibernate.HibernateMappingResource">
+        <constructor-arg>
+            <value>com/vtradex/wms/server/model/inventory/hbm/itmsFiles.hbm.xml</value>
+        </constructor-arg>
+    </bean>
+	
+	<bean id="jacProjectUrlHibernateMappingResource" class="com.vtradex.thorn.server.dao.hibernate.HibernateMappingResource">
+        <constructor-arg>
+            <value>com/vtradex/wms/server/model/itms/hbm/jacProjectUrl.hbm.xml</value>
+        </constructor-arg>
+    </bean>
+    <bean id="itmsInterfaceEmailRuleHibernateMappingResource" class="com.vtradex.thorn.server.dao.hibernate.HibernateMappingResource">
+        <constructor-arg>
+            <value>com/vtradex/wms/server/model/itms/hbm/itmsInterfaceEmailRule.hbm.xml</value>
+        </constructor-arg>
+    </bean>
+    <bean id="intervalLogHibernateMappingResource" class="com.vtradex.thorn.server.dao.hibernate.HibernateMappingResource">
+        <constructor-arg>
+            <value>com/vtradex/wms/server/model/itms/hbm/intervalLog.hbm.xml</value>
+        </constructor-arg>
+    </bean>
+    <bean id="intervalTimesHibernateMappingResource" class="com.vtradex.thorn.server.dao.hibernate.HibernateMappingResource">
+        <constructor-arg>
+            <value>com/vtradex/wms/server/model/itms/hbm/intervalTimes.hbm.xml</value>
+        </constructor-arg>
+    </bean>
+    <bean id="itmsDbLinksHibernateMappingResource" class="com.vtradex.thorn.server.dao.hibernate.HibernateMappingResource">
+        <constructor-arg>
+            <value>com/vtradex/wms/server/model/itms/hbm/itmsDbLinks.hbm.xml</value>
+        </constructor-arg>
+    </bean>
+    <bean id="itmsSqlDirHibernateMappingResource" class="com.vtradex.thorn.server.dao.hibernate.HibernateMappingResource">
+        <constructor-arg>
+            <value>com/vtradex/wms/server/model/itms/hbm/itmsSqlDir.hbm.xml</value>
+        </constructor-arg>
+    </bean>
+    <bean id="itmsSqlExecuteHibernateMappingResource" class="com.vtradex.thorn.server.dao.hibernate.HibernateMappingResource">
+        <constructor-arg>
+            <value>com/vtradex/wms/server/model/itms/hbm/itmsSqlExecute.hbm.xml</value>
+        </constructor-arg>
+    </bean>
+    <bean id="itmsTaskHibernateMappingResource" class="com.vtradex.thorn.server.dao.hibernate.HibernateMappingResource">
+        <constructor-arg>
+            <value>com/vtradex/wms/server/model/itms/hbm/itmsTask.hbm.xml</value>
+        </constructor-arg>
+    </bean>
+    <bean id="itmsJobLogHibernateMappingResource" class="com.vtradex.thorn.server.dao.hibernate.HibernateMappingResource">
+        <constructor-arg>
+            <value>com/vtradex/wms/server/model/itms/hbm/itmsJobLog.hbm.xml</value>
+        </constructor-arg>
+    </bean>
+    <bean id="itmsWebUrlHibernateMappingResource" class="com.vtradex.thorn.server.dao.hibernate.HibernateMappingResource">
+        <constructor-arg>
+            <value>com/vtradex/wms/server/model/webservice/hbm/itmsWebUrl.hbm.xml</value>
+        </constructor-arg>
+    </bean>
+    <bean id="itmsWebArgumentHibernateMappingResource" class="com.vtradex.thorn.server.dao.hibernate.HibernateMappingResource">
+        <constructor-arg>
+            <value>com/vtradex/wms/server/model/webservice/hbm/itmsWebArgument.hbm.xml</value>
+        </constructor-arg>
+    </bean>
+    <bean id="itmsWebColumnHibernateMappingResource" class="com.vtradex.thorn.server.dao.hibernate.HibernateMappingResource">
+        <constructor-arg>
+            <value>com/vtradex/wms/server/model/webservice/hbm/itmsWebColumn.hbm.xml</value>
+        </constructor-arg>
+    </bean>
+    <bean id="itmsIonizationTablesHibernateMappingResource" class="com.vtradex.thorn.server.dao.hibernate.HibernateMappingResource">
+        <constructor-arg>
+            <value>com/vtradex/wms/server/model/warehouse/hbm/itmsIonizationTables.hbm.xml</value>
+        </constructor-arg>
+    </bean>
+    <bean id="itmsIonizationIndexHibernateMappingResource" class="com.vtradex.thorn.server.dao.hibernate.HibernateMappingResource">
+        <constructor-arg>
+            <value>com/vtradex/wms/server/model/warehouse/hbm/itmsIonizationIndex.hbm.xml</value>
+        </constructor-arg>
+    </bean>
+    <bean id="itmsInterfaceTableHibernateMappingResource" class="com.vtradex.thorn.server.dao.hibernate.HibernateMappingResource">
+        <constructor-arg>
+            <value>com/vtradex/wms/server/model/webservice/hbm/itmsInterfaceTable.hbm.xml</value>
+        </constructor-arg>
+    </bean>
+    <bean id="itmsInterfaceColumnHibernateMappingResource" class="com.vtradex.thorn.server.dao.hibernate.HibernateMappingResource">
+        <constructor-arg>
+            <value>com/vtradex/wms/server/model/webservice/hbm/itmsInterfaceColumn.hbm.xml</value>
+        </constructor-arg>
+    </bean>
+    <bean id="itmsSynonymsHibernateMappingResource" class="com.vtradex.thorn.server.dao.hibernate.HibernateMappingResource">
+        <constructor-arg>
+            <value>com/vtradex/wms/server/model/itms/hbm/itmsSynonyms.hbm.xml</value>
+        </constructor-arg>
+    </bean>
+    <bean id="itmsUserOnOffHibernateMappingResource" class="com.vtradex.thorn.server.dao.hibernate.HibernateMappingResource">
+        <constructor-arg>
+            <value>com/vtradex/wms/server/model/itms/hbm/itmsUserOnOff.hbm.xml</value>
+        </constructor-arg>
+    </bean>
+</beans>

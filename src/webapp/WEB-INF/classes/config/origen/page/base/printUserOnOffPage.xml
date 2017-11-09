@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pages>
+    <reportPopupPage id="printUserOnOffPage" title="printUserOnOffPage" reportFile="itmsUserOnOff.raq" parameter="sid_id" width="900" height="450">
+        <inputUIs>
+            <list id="sid_id" title="location.warehouseArea.id" row="1" col="1" span="1" width="118" readOnly="false" required="true" reserve="false" forceOverride="true" forceSpace="false" multiple="false" inVisible="false">
+                <visibleExpression/>
+                <hql><![CDATA[SELECT sid.id,
+sid.name
+FROM ItmsSid sid WHERE sid.status='ENABLED' 
+AND sid.warehouse = #{SESSION_WAREHOUSE}]]></hql>
+                <eventListeners/>
+            </list>
+        </inputUIs>
+    </reportPopupPage>
+</pages>

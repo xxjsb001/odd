@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<page id="maintainItmsUserOnOffPage">
+    <main>
+        <process id="normalProcess">
+            <tablePopup id="initUserOnOff" title="initUserOnOff" process="normalProcess.initUserOnOff" enableType="none" containId="false" maintain="false" pageId="editInitUserOnOffPage">
+                <enableExpression/>
+            </tablePopup>
+            <tableCommit id="delete" title="delete" process="normalProcess.delete" enableType="multi" multiMapping="true" download="false" closeTransactional="false">
+    			<enableExpression/>
+   				 <mappings/>
+   				 <actions>
+       				 <action managerName="itmsLocationManager" methodName="deleteUserOnOff" parameter="objs"/>
+    			</actions>
+   				 <forwards/>
+			</tableCommit>
+             <!-- 
+             <tableDirectPrint id="delete" title="delete" process="normalProcess.delete" enableType="multi" multiMapping="true" download="false" closeTransactional="false" raq="printLabel.raq">
+				<enableExpression/>
+				<mappings>
+					<mapping id="objs" className="list">
+						<entries/>
+					</mapping>
+				</mappings>
+				<actions>
+					<action managerName="itmsLocationManager" methodName="deleteUserOnOff" parameter="objs"/>
+				</actions>
+				<forwards/>
+			</tableDirectPrint>
+			 -->
+            <tablePopup id="printReport1" title="printReport1" process="normalProcess.printReport1" enableType="none" containId="false" pageId="printUserOnOffPage">
+                <enableExpression/>
+            </tablePopup>
+        </process>
+    </main>
+    <detail/>
+</page>

@@ -1,0 +1,75 @@
+<ContentsModel>
+  <listeners serialization="custom">
+    <java.beans.PropertyChangeSupport>
+      <default>
+        <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>
+        <source class="ContentsModel" reference="../../../.."/>
+      </default>
+      <null/>
+    </java.beans.PropertyChangeSupport>
+  </listeners>
+  <sourceList/>
+  <targetList/>
+  <id>reflect</id>
+  <control>status</control>
+  <childList>
+    <com.vtradex.diagram.model.NodesModel>
+      <listeners serialization="custom">
+        <java.beans.PropertyChangeSupport>
+          <default>
+            <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>
+            <source class="com.vtradex.diagram.model.NodesModel" reference="../../../.."/>
+          </default>
+          <null/>
+        </java.beans.PropertyChangeSupport>
+      </listeners>
+      <sourceList/>
+      <targetList/>
+      <type>task</type>
+      <id>itmsTaskMethod</id>
+      <title>调用itmsTask</title>
+      <desc></desc>
+      <register>false</register>
+      <action></action>
+      <state></state>
+      <condition></condition>
+      <nodevalue></nodevalue>
+      <decisionToState/>
+      <constrains>
+        <x>223</x>
+        <y>90</y>
+        <width>131</width>
+        <height>52</height>
+      </constrains>
+    </com.vtradex.diagram.model.NodesModel>
+    <com.vtradex.diagram.model.NodesModel>
+      <listeners serialization="custom">
+        <java.beans.PropertyChangeSupport>
+          <default>
+            <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>
+            <source class="com.vtradex.diagram.model.NodesModel" reference="../../../.."/>
+          </default>
+          <null/>
+        </java.beans.PropertyChangeSupport>
+      </listeners>
+      <sourceList/>
+      <targetList/>
+      <type>task</type>
+      <id>invokeMethod</id>
+      <title>无参方法调用</title>
+      <desc></desc>
+      <register>false</register>
+      <action></action>
+      <state></state>
+      <condition></condition>
+      <nodevalue></nodevalue>
+      <decisionToState/>
+      <constrains>
+        <x>407</x>
+        <y>89</y>
+        <width>128</width>
+        <height>52</height>
+      </constrains>
+    </com.vtradex.diagram.model.NodesModel>
+  </childList>
+</ContentsModel>

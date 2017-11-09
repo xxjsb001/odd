@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<page id="importItmsMyDocPage">
+    <main>
+        <process id="baseProcess">
+            <formCommit id="save" title="save" process="baseProcess.new" enableType="none" download="false" closeTransactional="false" visibleType="none">
+                <enableExpression/>
+                <mappings>
+                    <mapping id="mis.supCode" className="file">
+                        <entries/>
+                    </mapping>
+                    <mapping id="mis.type" className="string">
+                        <entries/>
+                    </mapping>
+                    <mapping id="mis.note" className="string">
+                        <entries/>
+                    </mapping>
+                </mappings>
+                <actions>
+                    <action managerName="itmsFilesManager" methodName="importFileBySmb" parameter="mis.supCode,mis.type,mis.note"/>
+                </actions>
+                <forwards>
+                    <forward name="refreshParent" newEnabled="true" editEnabled="true"/>
+                    <forward name="resetWindow" newEnabled="true" editEnabled="true"/>
+                </forwards>
+            </formCommit>
+        </process>
+    </main>
+    <detail/>
+</page>

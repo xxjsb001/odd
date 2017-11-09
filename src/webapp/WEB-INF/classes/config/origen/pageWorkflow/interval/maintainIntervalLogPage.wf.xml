@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<page id="maintainIntervalLogPage">
+    <main>
+        <process id="wmsInventoryExtendProcess">
+         	<tablePopup id="new" title="new" process="wmsInventoryExtendProcess.new" enableType="none" containId="false" pageId="modifyIntervalLogPage">
+                <enableExpression/>
+            </tablePopup>
+            <tablePopup id="edit" title="edit" process="wmsInventoryExtendProcess.edit" enableType="single" containId="true" pageId="modifyIntervalLogPage">
+                <enableExpression/>
+            </tablePopup>
+            <tableCommit id="delete" title="delete" process="wmsInventoryExtendProcess.delete" enableType="multi" multiMapping="false" download="false" closeTransactional="false">
+                <enableExpression/>
+                <mappings>
+                </mappings>
+                <actions>
+                    <action managerName="intervalManager" methodName="deleteInterval" parameter="obj"/>
+                </actions>
+                <forwards/>
+            </tableCommit>
+            <tableCommit id="confirmByCarton" title="active" process="wmsInventoryExtendProcess.confirmByCarton" enableType="multi" multiMapping="false" download="false" closeTransactional="false">
+                <enableExpression/>
+                <mappings>
+                </mappings>
+                <actions>
+                    <action managerName="intervalManager" methodName="activeInterval" parameter="obj"/>
+                </actions>
+                <forwards/>
+            </tableCommit>
+            <tableCommit id="confirmByPallet" title="confirmByPallet" process="wmsInventoryExtendProcess.confirmByPallet" enableType="multi" multiMapping="false" download="false" closeTransactional="false">
+                <enableExpression/>
+                <mappings>
+                </mappings>
+                <actions>
+                    <action managerName="intervalManager" methodName="finishInterval" parameter="obj"/>
+                </actions>
+                <forwards/>
+            </tableCommit>
+            <tablePopup id="view" title="view" process="wmsInventoryExtendProcess.view" enableType="single" containId="true" pageId="modifyIntervalLogPage">
+                <enableExpression/>
+            </tablePopup>
+        </process>
+    </main>
+    <detail/>
+</page>

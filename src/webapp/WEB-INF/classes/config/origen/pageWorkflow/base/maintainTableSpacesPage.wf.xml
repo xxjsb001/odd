@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<page id="maintainTableSpacesPage">
+    <main>
+        <process id="wmsLocationBaseProcess">
+            <tablePopup id="new" title="new" process="wmsLocationBaseProcess.new" enableType="none" containId="false" pageId="editItmsTablespacesPage">
+                <enableExpression/>
+            </tablePopup>
+            <tablePopup id="edit" title="edit" process="wmsLocationBaseProcess.edit" enableType="single" containId="true" pageId="editItmsTablespacesPage">
+                <enableExpression/>
+            </tablePopup>
+            <tableCommit id="delete" title="delete" process="wmsLocationBaseProcess.delete" enableType="multi" download="false" confirmMessage="confirm.delete">
+                <enableExpression/>
+                <mappings/>
+                <actions>
+                </actions>
+                <forwards/>
+            </tableCommit>
+             <tableCommit id="addDbf" title="addDbf" process="wmsLocationBaseProcess.addDbf" enableType="single" download="false" confirmMessage="confirm">
+                <enableExpression/>
+                <mappings/>
+                <actions>
+                    <action managerName="itmsLocationManager" methodName="addDbf" parameter="obj"/>
+                </actions>
+                <forwards/>
+            </tableCommit>
+        </process>
+        <process id="lotRuleProcess">
+        	<tablePopup id="editWmsLocationUpdatePage" title="editWmsLocationUpdatePage" process="lotRuleProcess.disable" enableType="none" containId="false" pageId="editWmsLocationUpdatePage">
+                <enableExpression/>
+            </tablePopup>
+        </process>
+    </main>
+    <detail/>
+</page>

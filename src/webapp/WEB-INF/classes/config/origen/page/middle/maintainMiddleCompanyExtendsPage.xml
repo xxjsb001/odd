@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pages>
+    <maintainPage id="maintainMiddleCompanyExtendsPage" title="maintainMiddleCompanyExtendsPage" autoQuery="true" entityClass="com.vtradex.wms.server.model.middle.ItmsAuthority" displayRowCount="100">
+        <workflow/>
+        <datasource><![CDATA[SELECT mce.id,
+worker.code,
+mce.synonymName,
+mce.sender,
+table.code,
+user.code,
+mce.description
+ FROM ItmsAuthority mce
+ LEFT JOIN mce.worker worker
+ LEFT JOIN mce.table table
+ LEFT JOIN mce.table.user user
+ LEFT JOIN mce.worker.location location
+ LEFT JOIN mce.worker.location.warehouseArea warehouseArea
+ LEFT JOIN mce.worker.location.warehouseArea.warehouse warehouse
+ WHERE 1=1 AND warehouseArea.warehouse = #{SESSION_WAREHOUSE}
+ ORDER BY mce.id]]></datasource>
+        <columns>
+            <column id="mce.id" title="mce.id" visible="false" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="long"/>
+            <column id="worker.code" title="worker.code" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="string"/>
+            <column id="mce.synonymName" title="mce.synonymName" visible="true" sortable="true" horizonAlign="left" width="230" verticalAlign="middle" dataType="string"/>
+            <column id="mce.sender" title="mce.sender" visible="true" sortable="true" horizonAlign="center" width="40" verticalAlign="middle" dataType="enum" format="enumFormat" formatParam="TypeOfBill"/>
+            <column id="table.code" title="table.tableName" visible="true" sortable="true" horizonAlign="left" width="200" verticalAlign="middle" dataType="string"/>
+            <column id="user.code" title="user.code" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="string"/>
+            <column id="mce.description" title="billType.description" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="string"/>
+        </columns>
+    </maintainPage>
+</pages>

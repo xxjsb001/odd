@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pages>
+    <maintainPage id="maintainIonizationPage" title="maintainIonizationPage" autoQuery="true" entityClass="com.vtradex.wms.server.model.warehouse.ItmsIonizationTables" onClose="refreshParent" width="600" height="500" displayRowCount="100">
+        <workflow/>
+        <datasource><![CDATA[SELECT table.id,
+table.tableName,
+table.tablespaceName
+ FROM ItmsIonizationTables table
+ LEFT JOIN table.users user
+ WHERE 1=1
+ AND table.users.id = {parentId}
+ ORDER BY table.id DESC]]></datasource>
+        <columns>
+            <column id="table.id" title="table.id" visible="false" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="long"/>
+            <column id="table.tableName" title="table.tableName" visible="true" sortable="true" horizonAlign="left" verticalAlign="middle" dataType="string"/>
+            <column id="table.tablespaceName" title="table.tablespaceName" visible="true" sortable="true" horizonAlign="left" verticalAlign="middle" dataType="string"/>
+        </columns>
+    </maintainPage>
+</pages>

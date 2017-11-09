@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<page id="maintainItmsSynonymsPage">
+    <main>
+        <process id="qualityBillStatus">
+            <tablePopup id="initSynonyms" title="initSynonyms" process="qualityBillStatus.initSynonyms" enableType="none" containId="false" maintain="false" pageId="editInitSynonymsPage">
+                <enableExpression/>
+            </tablePopup>
+            <tableCommit id="delete" title="delete" process="qualityBillStatus.delete" enableType="multi" download="false" confirmMessage="confirm.disable">
+                <enableExpression/>
+                <mappings/>
+                <actions>
+                    <action managerName="itmsLocationManager" methodName="dropSynonyms" parameter="obj"/>
+                </actions>
+                <forwards/>
+            </tableCommit>
+        </process>
+    </main>
+    <detail/>
+</page>

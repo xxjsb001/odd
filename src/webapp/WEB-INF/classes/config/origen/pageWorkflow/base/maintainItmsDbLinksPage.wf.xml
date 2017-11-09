@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<page id="maintainItmsDbLinksPage">
+    <main>
+        <process id="dblinkProcess">
+            <tablePopup id="new" title="new" process="dblinkProcess.new" enableType="none" containId="false" maintain="false" pageId="editDblinkPage">
+                <enableExpression/>
+            </tablePopup>
+            <tableCommit id="delete" title="delete" process="dblinkProcess.delete" enableType="multi" download="false" confirmMessage="confirm">
+                <enableExpression/>
+                <mappings/>
+                <actions>
+                    <action managerName="itmsLocationManager" methodName="deleteDblink" parameter="obj"/>
+                </actions>
+                <forwards/>
+            </tableCommit>
+            <tablePopup id="initDblink" title="initDblink" process="dblinkProcess.initDblink" enableType="none" containId="false" maintain="false" pageId="editInitDblinkPage">
+                <enableExpression/>
+            </tablePopup>
+        </process>
+    </main>
+    <detail/>
+</page>

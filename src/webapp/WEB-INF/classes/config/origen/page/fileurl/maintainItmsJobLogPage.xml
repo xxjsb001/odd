@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pages>
+    <maintainPage id="maintainItmsJobLogPage" title="maintainItmsJobLogPage" autoQuery="true" entityClass="com.vtradex.wms.server.model.itms.ItmsJobLog">
+        <workflow/>
+        <datasource><![CDATA[SELECT log.id,
+log.type,
+log.operName,
+log.operException,
+log.updateInfo.createdTime 
+ FROM ItmsJobLog log 
+ WHERE 1=1
+ ORDER BY log.id desc]]></datasource>
+        <columns>
+            <column id="log.id" title="log.id" width="60" visible="true" sortable="true" horizonAlign="left" verticalAlign="middle" dataType="integer"/>
+            <column id="log.type" title="workArea.type" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" width="60" dataType="enum" format="enumFormat" formatParam="ItmsLogType"/>
+            <column id="log.operName" title="log.operName" visible="true" sortable="true" horizonAlign="left" verticalAlign="middle"/>
+            <column id="log.operException " title="el.operException" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" width="600"/>
+        	<column id="log.updateInfo.createdTime" title="moveDoc.updateInfo.createdTime" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" width="130" dataType="date"/>
+        </columns>
+    </maintainPage>
+</pages>

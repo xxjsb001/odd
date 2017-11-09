@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<page id="editWmsLocationUpdatePage">
+    <main>
+        <process id="lotRuleProcess">
+            <formCommit id="save" title="save" process="lotRuleProcess.disable" enableType="none" multiMapping="false" download="false" closeTransactional="false" visibleType="new">
+                <enableExpression/>
+                <mappings>
+                	<mapping id="location.warehouseArea.id" className="long">
+                        <entries/>
+                    </mapping>
+                    <mapping id="location.description" className="string">
+                        <entries/>
+                    </mapping>
+                </mappings>
+                <actions>
+                    <action managerName="itmsLocationManager" methodName="updateWmsLocation" parameter="location.warehouseArea.id,location.description"/>
+                </actions>
+                <forwards>
+                    <forward name="refreshParent" newEnabled="true" editEnabled="true"/>
+                    <forward name="resetWindow" newEnabled="true" editEnabled="true"/>
+                </forwards>
+            </formCommit>
+        </process>
+    </main>
+    <detail/>
+</page>

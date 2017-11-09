@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pages>
+    <editPage id="editItmsInterfaceEmailRulePage" title="editItmsInterfaceEmailRulePage" entityClass="com.vtradex.wms.server.model.itms.ItmsInterfaceEmailRule" onClose="refreshParent">
+        <workflow/>
+        <initListeners/>
+        <inputUIs>
+            <hidden id="email.id" title="email.id"/>
+            <text id="email.receiver" title="email.receiver" row="1" col="1" span="1" readOnly="false" required="true" reserve="false" forceOverride="true" focusUI="false" inVisible="false" editModel="editable" trimSpace="true">
+                <visibleExpression/>
+                <hql/>
+                <eventListeners/>
+            </text>
+            <text id="email.mobile" title="email.mobile" row="2" col="1" span="1" readOnly="false" required="false" reserve="false" forceOverride="true" focusUI="false" inVisible="false" trimSpace="true">
+                <visibleExpression/>
+                <hql/>
+                <eventListeners/>
+            </text>
+            <text id="email.emailAddr" title="email.emailAddr" row="3" col="1" span="2" width="302" readOnly="false" required="true" reserve="false" forceOverride="true" focusUI="false" inVisible="false" trimSpace="true">
+                <visibleExpression/>
+                <hql/>
+                <eventListeners/>
+            </text>
+            <text id="email.desc" title="url.description" row="7" col="1" span="2" width="302" readOnly="false" required="false" reserve="false" forceOverride="true" focusUI="false" inVisible="false" trimSpace="true">
+                <visibleExpression/>
+                <hql/>
+                <eventListeners/>
+            </text>
+        </inputUIs>
+    </editPage>
+</pages>

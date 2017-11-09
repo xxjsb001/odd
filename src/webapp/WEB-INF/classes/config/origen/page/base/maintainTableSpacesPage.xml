@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pages>
+    <maintainPage id="maintainTableSpacesPage" title="maintainTableSpacesPage" autoQuery="true" entityClass="com.vtradex.wms.server.model.warehouse.ItmsTablespaces">
+        <workflow/>
+        <datasource><![CDATA[SELECT location.id,
+location.code,
+location.warehouseArea.name,
+location.status,
+location.dbfPath,
+location.description,
+location.zone,
+location.line,
+location.column,
+location.layer,
+location.usedRate,
+location.routeNo,
+location.updateInfo.updateTime,
+location.updateInfo.lastOperator
+ FROM ItmsTablespaces location
+ LEFT JOIN location.warehouseArea warehouseArea
+ LEFT JOIN location.warehouseArea.warehouse warehouse
+ WHERE 1=1
+ AND warehouseArea.warehouse = #{SESSION_WAREHOUSE} 
+ ORDER BY location.code]]></datasource>
+        <columns>
+            <column id="location.id" title="location.id" visible="false" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="long"/>
+            <column id="location.code" title="location.code" visible="true" sortable="true" horizonAlign="left" verticalAlign="middle" dataType="string"/>
+            <column id="location.warehouseArea.name" title="location.warehouseArea.name" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="string"/>
+            <column id="location.status" title="location.status" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="enum" format="enumFormat" formatParam="BaseStatus"/>
+        	<column id="location.dbfPath" title="location.dbfPath" visible="true" sortable="true" horizonAlign="left" verticalAlign="middle" dataType="string"/>
+        	<column id="location.description" title="location.description" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="string"/>
+        	<column id="location.zone" title="location.zone" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="double"/>
+        	<column id="location.line" title="location.line" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="double"/>
+        	<column id="location.column" title="location.column" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="double"/>
+        	<column id="location.layer" title="location.layer" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="double"/>
+        	<column id="location.usedRate" title="location.usedRate" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="double"/>
+        	<column id="location.routeNo" title="location.routeNo" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="double"/>
+        	<column id="location.updateInfo.updateTime" title="workDoc.updateTime" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="datetime"/>
+            <column id="location.updateInfo.lastOperator" title="moveDoc.updateInfo.lastOperator" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="string"/>
+        </columns>
+    </maintainPage>
+</pages>

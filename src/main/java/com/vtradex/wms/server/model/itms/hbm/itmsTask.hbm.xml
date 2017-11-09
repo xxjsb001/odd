@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.vtradex.wms.server.model.itms.ItmsTask" table="ITMS_TASK">
+        <id name="id" column="ID" type="long">
+            <generator class="native">
+                <param name="sequence">iseq_ItmsTask</param>
+                <param name="parameters">START WITH 1</param>
+            </generator>
+        </id>
+        <property name="type" column="TYPE" type="string" length="100" not-null="true"/>
+        <property name="subscriber" column="SUBSCRIBER" type="string" length="100" not-null="true"/>
+        <property name="messageId" column="MESSAGE_ID" type="long"/>
+		<property name="createdTime" type="timestamp" column="CREATED_TIME" not-null="true"/>
+		<property name="startTime" column="START_TIME" type="timestamp"/>
+		<property name="endTime" column="END_TIME" type="timestamp"/>
+		<property name="repeatCount" column="REPEAT_COUNT" type="integer" not-null="true"/>
+		<property name="status" column="STATUS" type="string" length="20" not-null="true"/>
+		
+		<property name="extend1" column="EXTEND_1" type="string" length="100"/>
+		<property name="extend2" column="EXTEND_2" type="string" length="100"/>
+		<property name="extend3" column="EXTEND_3" type="string" length="100"/>
+		<property name="extend4" column="EXTEND_4" type="string" length="100"/>
+		<property name="extend5" column="EXTEND_5" type="string" length="100"/>
+		<property name="extend6" column="EXTEND_6" type="string" length="100"/>
+	</class>
+</hibernate-mapping>

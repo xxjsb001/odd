@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<page id="maintainItmsMyDocPage">
+    <main>
+        <process id="baseProcess">
+            <tablePopup id="new" title="new" process="baseProcess.new" enableType="none" containId="false" pageId="importItmsMyDocPage">
+                <enableExpression/>
+            </tablePopup>
+            <tablePopup id="edit" title="edit" process="baseProcess.edit" enableType="single" containId="true" pageId="editItmsMyDocPage">
+                <enableExpression/>
+            </tablePopup>
+            <tableCommit id="enable" title="enable" process="baseProcess.enable" enableType="multi" download="false" confirmMessage="confirm.enable">
+                <enableExpression/>
+                <mappings/>
+                <actions/>
+                <forwards/>
+            </tableCommit>
+            <tableCommit id="disable" title="disable" process="baseProcess.disable" enableType="multi" download="false" confirmMessage="confirm.disable">
+                <enableExpression/>
+                <mappings/>
+                <actions/>
+                <forwards/>
+            </tableCommit>
+        </process>
+        <process id="itmsDocPorcess">
+            <tableCommit id="pShare" title="pShare" process="itmsDocPorcess.pShare" enableType="multi" download="false" confirmMessage="confirm.enable">
+                <enableExpression><![CDATA[${mis.isPublicShare} == 'false']]></enableExpression>
+                <mappings/>
+                <actions>
+                    <action managerName="itmsFilesManager" methodName="pShare" parameter="obj"/>
+                </actions>
+                <forwards/>
+            </tableCommit>
+            <tableCommit id="unShare" title="unShare" process="itmsDocPorcess.unShare" enableType="multi" download="false" confirmMessage="confirm.enable">
+                <enableExpression><![CDATA[${mis.isPublicShare} == 'true']]></enableExpression>
+                <mappings/>
+                <actions>
+                    <action managerName="itmsFilesManager" methodName="unShare" parameter="obj"/>
+                </actions>
+                <forwards/>
+            </tableCommit>
+            <tablePopup id="sendMail" title="sendMail" process="itmsDocPorcess.sendMail" enableType="single" containId="true" pageId="editEmailSendPage">
+                <enableExpression/>
+            </tablePopup>
+        </process>
+        <process id="normalProcess">
+            <tableCommit id="delete" title="delete" process="normalProcess.delete" enableType="multi" download="false" confirmMessage="confirm.enable">
+                <enableExpression/>
+                <mappings/>
+                <actions>
+                    <action managerName="itmsFilesManager" methodName="deleteFiles" parameter="obj"/>
+                </actions>
+                <forwards/>
+            </tableCommit>
+        </process>
+    </main>
+    <detail/>
+</page>

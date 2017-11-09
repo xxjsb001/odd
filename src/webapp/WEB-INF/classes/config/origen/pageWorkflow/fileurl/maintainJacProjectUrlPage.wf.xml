@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<page id="maintainJacProjectUrlPage">
+    <main>
+        <process id="normalProcess">
+            <tablePopup id="new" title="new" process="normalProcess.new" enableType="none" containId="false" pageId="editJacProjectUrlPage">
+                <enableExpression/>
+            </tablePopup>
+             <tablePopup id="edit" title="edit" process="normalProcess.edit" enableType="single" containId="true" pageId="editJacProjectUrlPage">
+                <enableExpression/>
+            </tablePopup>
+            <tableCommit id="delete" title="delete" process="normalProcess.delete" enableType="multi" download="false">
+                <enableExpression/>
+                <mappings/>
+                <actions>
+                    <action managerName="itmsFilesManager" methodName="deleteJacProjectUrl" parameter="obj"/>
+                </actions>
+                <forwards/>
+            </tableCommit>
+        </process>
+    </main>
+    <detail/>
+</page>

@@ -1,0 +1,104 @@
+<ContentsModel>
+  <listeners serialization="custom">
+    <java.beans.PropertyChangeSupport>
+      <default>
+        <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>
+        <source class="ContentsModel" reference="../../../.."/>
+      </default>
+      <null/>
+    </java.beans.PropertyChangeSupport>
+  </listeners>
+  <sourceList/>
+  <targetList/>
+  <id>itmsDocPorcess</id>
+  <control>status</control>
+  <childList>
+    <com.vtradex.diagram.model.NodesModel>
+      <listeners serialization="custom">
+        <java.beans.PropertyChangeSupport>
+          <default>
+            <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>
+            <source class="com.vtradex.diagram.model.NodesModel" reference="../../../.."/>
+          </default>
+          <null/>
+        </java.beans.PropertyChangeSupport>
+      </listeners>
+      <sourceList/>
+      <targetList/>
+      <type>task</type>
+      <id>pShare</id>
+      <title>公共分享</title>
+      <desc></desc>
+      <register>false</register>
+      <action></action>
+      <state></state>
+      <condition></condition>
+      <nodevalue></nodevalue>
+      <decisionToState/>
+      <constrains>
+        <x>213</x>
+        <y>65</y>
+        <width>-1</width>
+        <height>-1</height>
+      </constrains>
+    </com.vtradex.diagram.model.NodesModel>
+    <com.vtradex.diagram.model.NodesModel>
+      <listeners serialization="custom">
+        <java.beans.PropertyChangeSupport>
+          <default>
+            <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>
+            <source class="com.vtradex.diagram.model.NodesModel" reference="../../../.."/>
+          </default>
+          <null/>
+        </java.beans.PropertyChangeSupport>
+      </listeners>
+      <sourceList/>
+      <targetList/>
+      <type>task</type>
+      <id>unShare</id>
+      <title>取消分享</title>
+      <desc></desc>
+      <register>false</register>
+      <action></action>
+      <state></state>
+      <condition></condition>
+      <nodevalue></nodevalue>
+      <decisionToState/>
+      <constrains>
+        <x>356</x>
+        <y>66</y>
+        <width>-1</width>
+        <height>-1</height>
+      </constrains>
+    </com.vtradex.diagram.model.NodesModel>
+    <com.vtradex.diagram.model.NodesModel>
+      <listeners serialization="custom">
+        <java.beans.PropertyChangeSupport>
+          <default>
+            <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>
+            <source class="com.vtradex.diagram.model.NodesModel" reference="../../../.."/>
+          </default>
+          <null/>
+        </java.beans.PropertyChangeSupport>
+      </listeners>
+      <sourceList/>
+      <targetList/>
+      <type>task</type>
+      <id>sendMail</id>
+      <title>邮件发送</title>
+      <desc></desc>
+      <register>false</register>
+      <action></action>
+      <state></state>
+      <condition></condition>
+      <nodevalue></nodevalue>
+      <decisionToState/>
+      <constrains>
+        <x>502</x>
+        <y>79</y>
+        <width>-1</width>
+        <height>-1</height>
+      </constrains>
+    </com.vtradex.diagram.model.NodesModel>
+  </childList>
+</ContentsModel>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pages>
+    <maintainPage id="maintainItmsMyDocPage" title="maintainItmsMyDocPage" autoQuery="false" entityClass="com.vtradex.wms.server.model.inventory.ItmsFiles" displayRowCount="50">
+        <workflow/>
+        <datasource><![CDATA[SELECT mis.id,
+mis.type,
+mis.supCode,
+mis.note,
+mis.supName,
+'doc_file' as down,
+mis.isPublicShare,
+mis.quantity,
+mis.status,
+mis.updateInfo.createdTime,
+mis.updateInfo.creator,
+mis.updateInfo.updateTime,
+mis.updateInfo.lastOperator
+ FROM ItmsFiles mis 
+ WHERE 1=1
+ AND mis.warehouse = #{SESSION_WAREHOUSE} 
+ AND mis.updateInfo.creator = #{SESSION_USER_NAME}
+ ORDER BY mis.orderDate,mis.supCode,mis.id]]></datasource>
+        <columns>
+            <column id="mis.id" title="mis.id" visible="false" sortable="false" horizonAlign="center" verticalAlign="middle" dataType="long"/>
+            <column id="mis.type" title="mis.type" visible="true" sortable="true" horizonAlign="left" verticalAlign="middle" dataType="enum" format="enumFormat" formatParam="ItmsFileType"/>
+            <column id="mis.supCode" title="mis.supCode" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="string" width="200" format="alterValueFormatter"/>/>
+            <column id="mis.note" title="mis.note" visible="true" sortable="true" horizonAlign="left" verticalAlign="middle" dataType="string" width="200"/>
+            <column id="mis.supName" title="mis.supName" visible="false" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="string"/>
+            <column id="down" title="mis.extendPropc1" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" width="60" dataType="string" format="downloadFormartter"/>
+            <column id="mis.isPublicShare" title="mis.isPublicShare" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="boolean" format="booleanFormat"/>
+            <column id="mis.quantity" title="mis.quantity" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="double"/>
+            <column id="mis.status" title="warehouse.status" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" width="60" dataType="enum" format="enumFormat" formatParam="BaseStatus"/>
+            <column id="mis.updateInfo.createdTime" title="moveDoc.updateInfo.createdTime" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="date"/>
+			<column id="mis.updateInfo.creator" title="moveDoc.updateInfo.creator" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="string"/>
+            <column id="mis.updateInfo.updateTime" title="workDoc.updateTime" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="date"/>
+			<column id="mis.updateInfo.lastOperator" title="moveDoc.updateInfo.lastOperator" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="string"/>
+		</columns>
+    </maintainPage>
+</pages>

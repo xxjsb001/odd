@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<page id="maintainWmsWorkerRulePage">
+    <main>
+    <process id="itmsUserProcess">
+            <tableCommit id="selectPower" title="selectPower" process="itmsUserProcess.selectPower" enableType="multi" download="false" confirmMessage="confirm.wmsLocationBatch">
+                <enableExpression/>
+                <mappings>
+                    <mapping id="worker.id" className="long">
+                        <entries/>
+                    </mapping>
+                </mappings>
+                <actions>
+                    <action managerName="itmsOrganizationManager" methodName="selectRuleUpdate" parameter="worker.id,obj"/>
+                </actions>
+                <forwards/>
+            </tableCommit>
+        </process>
+    </main>
+    <detail/>
+</page>

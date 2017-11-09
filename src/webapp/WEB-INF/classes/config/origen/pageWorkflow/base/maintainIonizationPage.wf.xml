@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<page id="maintainIonizationPage">
+    <main>
+        <process id="itmsUserProcess">
+            <tableCommit id="correct" title="correct" process="itmsUserProcess.correct" enableType="none" download="false" confirmMessage="confirm">
+                <enableExpression/>
+                <mappings>
+                </mappings>
+                <actions>
+                    <action managerName="itmsOrganizationManager" methodName="correctTable" parameter="parentObj"/>
+                </actions>
+                <forwards/>
+            </tableCommit>
+        </process>
+    </main>
+    <detail/>
+</page>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<process id="itmsFilesProcess" control="status">
+
+	<state id="OPEN" title="打开"/>
+
+	<state id="ENABLED" title="生效"/>
+
+	<task id="newFileDir" title="新建文件夹">
+		<to id="OPEN" type="state"/>
+	</task>
+
+	<task id="newFile" title="新建文件">
+		<to id="OPEN" type="state"/>
+	</task>
+
+	<task id="editFileDir" title="修改文件夹">
+		<from id="OPEN" type="state"/>
+	</task>
+
+	<task id="deleteFileDir" title="删除文件夹">
+		<from id="OPEN" type="state"/>
+	</task>
+
+	<task id="editFile" title="修改文件">
+		<from id="OPEN" type="state"/>
+	</task>
+
+	<task id="deleteFile" title="删除文件">
+		<from id="OPEN" type="state"/>
+	</task>
+
+	<task id="moveFile" title="移动文件">
+		<from id="OPEN" type="state"/>
+	</task>
+
+	<task id="enable" title="生效">
+		<from id="OPEN" type="state"/>
+		<to id="ENABLED" type="state"/>
+	</task>
+
+	<task id="disable" title="失效">
+		<from id="ENABLED" type="state"/>
+		<to id="OPEN" type="state"/>
+	</task>
+
+	<task id="importFile" title="文件导入">
+	</task>
+
+	<task id="initAllSqlFiles" title="初始化sql文件">
+	</task>
+
+	<task id="initServiceFile" title="服务器JOB文件详情">
+	</task>
+
+</process>

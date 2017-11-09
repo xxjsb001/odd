@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pages>
+    <maintainPage id="editEmailSendPage" title="editEmailSendPage" autoQuery="true" entityClass="com.vtradex.wms.server.model.itms.ItmsInterfaceEmailRule" width="700" height="450">
+        <workflow/>
+        <datasource><![CDATA[SELECT email.id,
+email.receiver,
+email.emailAddr,
+email.mobile,
+email.desc
+FROM ItmsInterfaceEmailRule email 
+ WHERE 1=1 and email.status = 'ENABLED'
+ AND email.updateInfo.creator = #{SESSION_USER_NAME}
+ ORDER BY email.id]]></datasource>
+        <columns>
+            <column id="email.id" title="email.id" visible="false" sortable="false" horizonAlign="center" verticalAlign="middle" dataType="long"/>
+            <column id="email.receiver" title="email.receiver" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="string"/>
+            <column id="email.emailAddr" title="email.emailAddr" visible="true" sortable="true" horizonAlign="left" verticalAlign="middle" dataType="string" width="210"/>
+            <column id="email.mobile" title="email.mobile" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="string" width="100"/>
+			<column id="email.desc" title="url.description" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="string"/>
+		</columns>
+    </maintainPage>
+</pages>

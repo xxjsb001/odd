@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC
+        "-//SPRING//DTD BEAN//EN"
+        "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<!--
+  Copyright (c) 2001-2005 vTradEx Information Technology Co.,Ltd. All Rights Reserved.
+
+  This software is the confidential and proprietary information of vTradEx
+  Information Technology Co.,Ltd. ("Confidential Information").  You shall not
+  disclose such Confidential Information and shall use it only in
+  accordance with the terms of the license agreement you entered into
+  with vTradEx.
+
+  VTRADEX MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
+  SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+  IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
+  PURPOSE, OR NON-INFRINGEMENT. VTRADEX SHALL NOT BE LIABLE FOR ANY DAMAGES
+  SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING
+  THIS SOFTWARE OR ITS DERIVATIVES.
+-->
+<!-- $Id: actionContext.xml,v 1.1.1.1 2016/07/02 06:56:41 yongcheng.min Exp $ -->
+
+<beans>	
+	<bean id="processDocAllocateDecisionAction" class="com.vtradex.wms.server.action.ProcessDocAllocateDecisionAction" />
+	<bean id="processDocDetailAllocateDecisionAction" class="com.vtradex.wms.server.action.ProcessDocDetailAllocateDecisionAction" />
+	<bean id="processDocPickDecisionAction" class="com.vtradex.wms.server.action.ProcessDocPickDecisionAction" />
+	<bean id="processDocRecordDecisionAction" class="com.vtradex.wms.server.action.ProcessDocRecordDecisionAction" />
+</beans>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pages>
+    <maintainPage id="maintainItmsTablePage" title="maintainItmsTablePage" autoQuery="true" entityClass="com.vtradex.wms.server.model.warehouse.ItmsTable" displayRowCount="100">
+        <workflow/>
+        <datasource><![CDATA[SELECT workArea.id,
+user.code,
+workArea.code,
+workArea.type,
+workArea.numRows,
+workArea.status,
+workArea.synonymName,
+user.synonymName,
+sid.name,
+workArea.description 
+ FROM ItmsTable workArea
+ LEFT JOIN workArea.user user
+ LEFT JOIN workArea.user.location location
+ LEFT JOIN workArea.user.location.warehouseArea sid
+ LEFT JOIN workArea.user.location.warehouseArea.warehouse warehouse
+ WHERE 1=1
+ AND sid.warehouse = #{SESSION_WAREHOUSE} 
+ ORDER BY workArea.id DESC]]></datasource>
+        <columns>
+            <column id="workArea.id" title="workArea.id" visible="false" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="long"/>
+            <column id="user.code" title="user.code" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="string"/>
+            <column id="workArea.code" title="table.tableName" visible="true" sortable="true" horizonAlign="left" verticalAlign="middle" dataType="string"/>
+            <column id="workArea.type" title="workArea.type" visible="true" sortable="true" horizonAlign="center" width="40" verticalAlign="middle" dataType="enum" format="enumFormat" formatParam="CheckInventoryType"/>
+            <column id="workArea.numRows" title="workArea.numRows" visible="true" sortable="true" horizonAlign="center" width="50" verticalAlign="middle" dataType="integer"/>
+            <column id="workArea.status" title="workArea.status" visible="true" sortable="true" horizonAlign="center" width="40" verticalAlign="middle" dataType="enum" format="enumFormat" formatParam="BaseStatus"/>
+            <column id="workArea.synonymName" title="mce.synonymName" visible="true" sortable="true" horizonAlign="left" width="200" verticalAlign="middle" dataType="string"/>
+            <column id="user.synonymName" title="wk.synonymName" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="enum" format="enumFormat" formatParam="ItmpDeptNumber"/>
+            <column id="sid.name" title="warehouseArea.name" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="string"/>
+            <column id="workArea.description" title="workArea.description" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="string"/>
+        </columns>
+    </maintainPage>
+</pages>

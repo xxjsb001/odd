@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pages>
+    <maintainPage id="maintainItmsInterfaceEmailRulePage" title="maintainItmsInterfaceEmailRulePage" autoQuery="true" entityClass="com.vtradex.wms.server.model.itms.ItmsInterfaceEmailRule">
+        <workflow/>
+        <datasource><![CDATA[SELECT email.id,
+email.receiver,
+email.emailAddr,
+email.mobile,
+email.desc,
+email.status,
+email.updateInfo.createdTime,
+email.updateInfo.creator,
+email.updateInfo.updateTime,
+email.updateInfo.lastOperator
+ FROM ItmsInterfaceEmailRule email 
+ WHERE 1=1
+ AND email.updateInfo.creator = #{SESSION_USER_NAME}
+ ORDER BY email.id]]></datasource>
+        <columns>
+            <column id="email.id" title="email.id" visible="false" sortable="false" horizonAlign="center" verticalAlign="middle" dataType="long"/>
+            <column id="email.receiver" title="email.receiver" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="string"/>
+            <column id="email.emailAddr" title="email.emailAddr" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="string"/>
+            <column id="email.mobile" title="email.mobile" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="string"/>
+			<column id="email.desc" title="url.description" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="string"/>
+            <column id="email.status" title="warehouse.status" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="enum" format="enumFormat" formatParam="BaseStatus"/>
+            <column id="email.updateInfo.createdTime" title="moveDoc.updateInfo.createdTime" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="date"/>
+			<column id="email.updateInfo.creator" title="moveDoc.updateInfo.creator" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="string"/>
+            <column id="email.updateInfo.updateTime" title="workDoc.updateTime" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="date"/>
+			<column id="email.updateInfo.lastOperator" title="moveDoc.updateInfo.lastOperator" visible="true" sortable="true" horizonAlign="center" verticalAlign="middle" dataType="string"/>
+		</columns>
+    </maintainPage>
+</pages>

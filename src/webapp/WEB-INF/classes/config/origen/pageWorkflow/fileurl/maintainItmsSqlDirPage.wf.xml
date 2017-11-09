@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<page id="maintainItmsSqlDirPage">
+    <main>
+        <process id="itmsFilesProcess">
+            <tablePopup id="newFileDir" title="newFileDir" process="itmsFilesProcess.newFileDir" enableType="none" containId="false" maintain="false" pageId="editItmsSqlDirPage">
+                <enableExpression/>
+            </tablePopup>
+            <tablePopup id="editFileDir" title="editFileDir" process="itmsFilesProcess.editFileDir" enableType="single" containId="true" maintain="false" pageId="editItmsSqlDirPage">
+                <enableExpression/>
+            </tablePopup>
+            <tableCommit id="enable" title="enable" process="itmsFilesProcess.enable" enableType="multi" download="false" confirmMessage="confirm.enable">
+                <enableExpression/>
+                <mappings/>
+                <actions>
+                    <action managerName="itmsFilesManager" methodName="activeDir" parameter="obj"/>
+                </actions>
+                <forwards/>
+            </tableCommit>
+            <tableCommit id="disable" title="disable" process="itmsFilesProcess.disable" enableType="multi" download="false" confirmMessage="confirm.disable">
+                <enableExpression/>
+                <mappings/>
+                <actions/>
+                <forwards/>
+            </tableCommit>
+            <tableCommit id="deleteFileDir" title="deleteFileDir" process="itmsFilesProcess.deleteFileDir" enableType="multi" download="false" confirmMessage="confirm.maintainWmsMasterPlanNomalPage.delete">
+                <enableExpression/>
+                <mappings/>
+                <actions>
+                    <action managerName="itmsFilesManager" methodName="deleteSqlDir" parameter="obj"/>
+                </actions>
+                <forwards/>
+            </tableCommit>
+        </process>
+    </main>
+    <detail/>
+</page>

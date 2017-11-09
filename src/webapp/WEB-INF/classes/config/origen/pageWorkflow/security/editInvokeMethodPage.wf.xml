@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<page id="editInvokeMethodPage">
+    <main>
+        <process id="reflect">
+            <formCommit id="save" title="save" process="reflect.invokeMethod" accelerateKey="enter" enableType="none" download="false" visibleType="new">
+                <enableExpression/>
+                <mappings>
+                    <mapping id="task.subscriber" className="string">
+                        <entries/>
+                    </mapping>
+                </mappings>
+                <actions>
+                    <action managerName="reflectMethodManager" methodName="invokeMethod" parameter="task.subscriber"/>
+                </actions>
+                <forwards>
+                    <forward name="resetWindow" newEnabled="true" editEnabled="true"/>
+                </forwards>
+            </formCommit>
+        </process>
+    </main>
+    <detail/>
+</page>

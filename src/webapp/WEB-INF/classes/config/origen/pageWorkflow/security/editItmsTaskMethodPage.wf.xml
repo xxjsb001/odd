@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<page id="editItmsTaskMethodPage">
+    <main>
+        <process id="reflect">
+            <formCommit id="save" title="save" process="reflect.itmsTaskMethod" accelerateKey="enter" enableType="none" download="false" closeTransactional="true" visibleType="new">
+                <enableExpression/>
+                <mappings>
+                    <mapping id="itms.task.id" className="string">
+                        <entries/>
+                    </mapping>
+                </mappings>
+                <actions>
+                    <action managerName="reflectMethodManager" methodName="itmsTaskMethod" parameter="itms.task.id"/>
+                </actions>
+                <forwards>
+                    <forward name="resetWindow" newEnabled="true" editEnabled="true"/>
+                </forwards>
+            </formCommit>
+        </process>
+    </main>
+    <detail/>
+</page>

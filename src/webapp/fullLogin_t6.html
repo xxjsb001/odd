@@ -1,0 +1,237 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>ODD-HUB</title>
+<style type="text/css">
+html,body {
+	width: 100%;
+	height: 100%;
+	margin: 0px;
+}
+
+.inputLy {
+	width: 280px;
+	height:40px; 
+	padding: 8px 8px;
+	font-size: 14px;
+	margin-left:70px; 
+	margin-top: 20px;
+	color:#000000;
+	font-weight: bold;
+}
+
+.buttonLy {
+	width: 280px;
+	height:50px; 
+	padding: 8px 8px;
+	font-size: 14px;
+	margin-left:70px; 
+	margin-top:45px;
+	background-color:057998; 
+	color:#ffffff;
+	border: none;
+}
+</style>
+<script type="text/JavaScript">
+
+function $$(id){
+	return document.getElementById(id);
+}
+
+function waitLoginFinish() {
+	if (waitLogin == "true") {
+		return;
+	}
+	else {
+		waitLogin = "true";
+		doLogin();
+	}
+}
+function callGwt() {
+	if (parent.gwtState==false)
+	{
+		setTimeout("callGwt()", 500);
+	}
+	else {
+		parent.conn.foo();
+	}
+}
+function doLogin() {
+	var login_name = document.getElementById("login_name");
+	var password = document.getElementById("password");
+	var locale = document.getElementById("locale");
+	var localeValue = locale.options[locale.selectedIndex].value;
+	var url = "*.login";
+	var params = "login_name=" + encodeParams(login_name.value) + "&password=" + encodeParams(password.value) + "&locale=" 
+		+ localeValue + "&referenceModel=origen";
+	var xmlHttp = new XMLHttpRequest();
+	xmlHttp.open("POST",url,true);
+	xmlHttp.setRequestHeader("cache-control","no-cache"); 
+	xmlHttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+	xmlHttp.onreadystatechange=function() {
+		if (xmlHttp.readyState==4 && xmlHttp.status==200) {
+			if (xmlHttp.responseText=="success") {
+				callGwt();
+			}
+			else {
+				finishLogin(xmlHttp.responseText);
+			}
+		}
+	}
+	xmlHttp.send(params);
+}
+
+function finishLogin(errorMsg) {
+	waitLogin = "false";
+	document.getElementById("slider").style.display = "none";
+	alert(errorMsg);
+}
+function encodeParams(txt){    
+	var randint=Math.ceil(Math.random()*100+1);
+		var result = randint;
+		var i,s;
+	    for(i=0;i<txt.length;i++) {
+	        result += "@"+(parseInt(txt.charCodeAt(i).toString(10)) * randint).toString(16); 
+	    }
+	    return result;
+	}
+function init() {
+	waitLogin = "false";
+	
+	if (window.ActiveXObject && !window.XMLHttpRequest) {
+		window.XMLHttpRequest = function() {
+			var msxmls = ['Msxml2.XMLHTTP.5.0','Msxml2.XMLHTTP.4.0','Msxml2.XMLHTTP.3.0','Msxml2.XMLHTTP','Microsoft.XMLHTTP'];
+			for (var i = 0 ; i < msxmls.length ; i ++) {
+				try {
+					return new ActiveXObject(msxmls[i]);
+				}
+				catch(e) {}
+			}
+			return null;
+		};
+	}
+	
+}
+function checkEnterKey(evt) {
+	evt = evt ? evt : (window.event ? window.event : null);
+	if(evt.keyCode==13) {
+		checkLoginInput();
+	}
+}
+function checkLoginInput() {	
+	var login_name = document.getElementById('login_name');
+	if(login_name.value == '') {
+		alert('请输入用户名');
+		login_name.focus();
+		return;
+	}
+	var password = document.getElementById('password');
+	if(password.value == '') {
+		alert('请输入密码');
+		password.focus();
+		return;
+	}
+	waitLoginFinish();	  
+	document.getElementById("slider").style.display = "block";
+}
+
+function checkModifyPwd() {	
+	var modify_login_name = $$('modify_login_name');
+	if(modify_login_name.value == '') {
+		alert('请输入用户名');
+		modify_login_name.focus();
+		return false;
+	}
+	var oldPassword = $$('oldPassword');
+	if(oldPassword.value == '') {
+		alert('请输入旧密码');
+		oldPassword.focus();
+		return false;
+	}
+	var newPassword = $$('newPassword');
+	if(newPassword.value == '') {
+		alert('请输入新密码');
+		newPassword.focus();
+		return false;
+	}
+	document.getElementById("slider").style.display = "block";
+	return true;
+}
+
+
+function doModifyPwd() {
+	if(!checkModifyPwd()){
+		return;
+	}
+	
+	var modify_login_name = $$("modify_login_name");
+	var oldPassword = $$("oldPassword");
+	var newPassword = $$("newPassword");
+	var locale = $$("modifyLocale");
+	var localeValue = locale.options[locale.selectedIndex].value;
+	var url = "*.modifyPwd?login_name=" + modify_login_name.value + "&oldPassword=" + oldPassword.value + "&newPassword="+newPassword.value+"&locale="+localeValue;
+	var xmlHttp = new XMLHttpRequest();
+	xmlHttp.open("POST",url,true);
+	xmlHttp.onreadystatechange=function() {
+		if (xmlHttp.readyState==4 && xmlHttp.status==200) {
+			if (xmlHttp.responseText=="success") {
+				window.location.href='index.html';	
+			}else {
+				$$("slider").style.display = "none";
+				alert(xmlHttp.responseText);
+			}
+		}
+	}
+	xmlHttp.send(null);
+}
+
+</script>
+
+</head>
+
+<body onload="init();" onkeyup="checkEnterKey(event)">
+	<table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#67afel" >
+		<tr>
+			<td  width="60%" >
+				<div style= "margin-left:80px;" ><img src="images/login/bg_pic.png" left="30px" ></div>
+			</td>
+			<td  width="430px">
+				<div style="margin-left:40px; font-size: 24px; color:white;text-align:center;width:430px;">
+					<h2>欢迎使用ODD-HUB</h2>
+				</div>
+				<div style= "margin-left:40px;background:url(images/login/login_bg.png) no-repeat center;width:430px;height:443px;" >
+					<div style ="text-align:center;height:65px;line-height:65px;font-size:24px; color:#666;">
+						<p><h2>用户登录</h2></p>
+					</div>
+					<br/>
+					<input type="text" name="login_name" id="login_name" class="inputLy" placeholder="账 号" />
+					<input type="password" name="password" id="password" class="inputLy" placeholder="密 码" />
+					<select name="locale" id="locale" class="inputLy">
+						<option value=zh>中 文</option>
+						<option value=en>英 文</option>
+					 </select>
+					<input type="submit" class="buttonLy" name="loginButton" id="loginButton" onClick="checkLoginInput()" onFocus="this.blur()" value="登 录" />
+				</div>
+			</td>
+			<td  width="100%">
+			</td>
+		</tr>
+		<tr id="slider" style="display:none;">
+			<td colspan="3">
+				<marquee direction="right" width="100%" scrollamount="8" scrolldelay="50" bgcolor="#ECF2FF">
+					<table cellspacing="1" cellpadding="0">  
+						<tr height=5> 
+							<td bgcolor=#3399FF width=20></td>  <td></td> 
+							<td bgcolor=#3399FF width=20></td>  <td></td> 
+							<td bgcolor=#3399FF width=20></td>  <td></td> 
+							<td bgcolor=#3399FF width=20></td>  <td></td> 
+							<td bgcolor=#3399FF width=20></td>  <td></td>
+							<td bgcolor=#3399FF width=20></td>  <td></td> 
+						</tr>
+					</table>
+				</marquee>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

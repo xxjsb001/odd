@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<page id="editEmailSendPage">
+    <main>
+        <process id="itmsDocPorces">
+            <tableCommit id="sendMail" title="sendMail" process="itmsDocPorcess.sendMail" enableType="multi" multiMapping="false" download="false" closeTransactional="false">
+                <enableExpression></enableExpression>
+                <mappings>
+                </mappings>
+                <actions>
+                    <action managerName="itmsFilesManager" methodName="sendAdvancedTimingEmail" parameter="parentObj,obj"/>
+                </actions>
+                <forwards>
+                	<forward name="closeWindow" newEnabled="true" editEnabled="true"/>
+                </forwards>
+            </tableCommit>
+        </process>
+    </main>
+    <detail/>
+</page>
